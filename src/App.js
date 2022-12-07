@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import Homepage from './components/Screen/Pages/Homepage';
 
 function App() {
   return (
     <div className="bg-red-400">
-        <h1>Hello world</h1>
+      <Homepage/>
     </div>
   );
 }
