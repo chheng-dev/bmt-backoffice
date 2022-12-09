@@ -16,8 +16,6 @@ const CreateCategory = () => {
                 image: "https://burst.shopifycdn.com/photos/crowd-participating-at-event.jpg?width=1200&format=pjpg&exif=1&iptc=1"
             }, []).then(() => {
                 setLoading(false)
-                setCategoryName()
-                setSlugName()
             })
 
 

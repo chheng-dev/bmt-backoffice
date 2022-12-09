@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import Sider from "antd/es/layout/Sider";
 import { Menu } from "antd";
-import {
-    DesktopOutlined,
-    FileOutlined,
-    PieChartOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
 import { NavLink } from "react-router-dom";
-
+import { BiHome,BiCategory,BiBell,BiUser,BiBarChartAlt } from "react-icons/bi";
+import logo from "../assets/img/BMT-Logo-admin.png"
 
 const Sidebar = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -21,23 +15,20 @@ const Sidebar = () => {
         setCurrent(e.key);
     };
 
-    //   const items = [
-    //     { label: 'item 1', key: 'item-1' }, // remember to pass the key prop
-    //     { label: 'item 2', key: 'item-2' }, // which is required
-    //   ];
-
     return (
         <>
-            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="bg-white">
                 <div
-                    className="bg-gray-800"
+                    className="bg-red-800"
                     style={{
                         height: 32,
                         margin: 16,
                     }}
-                />
+                >
+                    <img className="w-32 p-2" src={logo}/>
+                </div>
 
-                <Menu theme="dark" onClick={SelectedKey} selectedKeys={[current]}>
+                <Menu theme="light" onClick={SelectedKey} selectedKeys={[current]}>
                     <Menu.Item key="1">
                         <NavLink
                             to="/"
@@ -47,7 +38,7 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
-                                <DesktopOutlined />
+                                <BiHome />
                                 <span className="ml-2">Dashboard</span>
                             </span>
 
@@ -62,13 +53,43 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
-                                <FileOutlined />
+                                <BiCategory />
                                 <span className="ml-2">Category</span>
                             </span>
 
                         </NavLink>
                     </Menu.Item>
                     <Menu.Item key="3">
+                        <NavLink
+                            to="/event"
+                            className={isActive =>
+                                "nav-link" + (!isActive ? " unselected" : "")
+                            }
+                        >
+
+                            <span className="flex items-center">
+                                <BiBarChartAlt />
+                                <span className="ml-2">Event</span>
+                            </span>
+
+                        </NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="4">
+                        <NavLink
+                            to="/order"
+                            className={isActive =>
+                                "nav-link" + (!isActive ? " unselected" : "")
+                            }
+                        >
+
+                            <span className="flex items-center">
+                                <BiBell />
+                                <span className="ml-2">Order List</span>
+                            </span>
+
+                        </NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="5">
                         <NavLink
                             to="/events"
                             className={isActive =>
@@ -77,8 +98,8 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
-                                <PieChartOutlined />
-                                <span className="ml-2">Event</span>
+                                <BiUser />
+                                <span className="ml-2">Customer List</span>
                             </span>
 
                         </NavLink>

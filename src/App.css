@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-layout-sider{
+  background-color: white !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.ant-layout-sider-trigger{
+  background-color: white !important;
+  color: #282c34;
+}

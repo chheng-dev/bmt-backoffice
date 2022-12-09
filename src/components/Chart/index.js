@@ -5,7 +5,7 @@ import { CChart } from '@coreui/react-chartjs'
 const Chart = () => {
     return (
         <div className="w-full">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="bg-white shadow-md rounded-lg my-4">
                     <div class=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
                         <div class="">
@@ -15,7 +15,7 @@ const Chart = () => {
                     <CChart
                         type="doughnut"
                         data={{
-                            labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+                            labels: ['Sport', 'Concert', 'Trainning', 'AngularJs'],
                             datasets: [
                                 {
                                     backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
@@ -89,7 +89,7 @@ const Chart = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid md:grid-cols-2 gap-4">
                 <div className="bg-white shadow-md rounded-lg my-4">
                     <div class=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
                         <div class="">

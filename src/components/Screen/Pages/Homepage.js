@@ -1,9 +1,9 @@
 import React from 'react';
 import { Layout } from 'antd';
-import { Header } from 'antd/es/layout/layout';
 import Sidebar from '../../Layouts/Sidebar';
 import Foot from '../../Layouts/Footer';
 import Container from './Container';
+import Header from '../../Layouts/Header';
 
 const Homepage = () => {
     return (
@@ -16,14 +16,10 @@ const Homepage = () => {
             {/* sidebar */}
             <Sidebar />
 
-            <Layout className="site-layout">
-                <Header
-                    style={{
-                        padding: 0,
-                    }}
-                />
-                
-
+            <Layout className="site-layout rounded-lg h-90vh" style={{
+             
+            }}>
+                <Header/>
                 
                 {/* Container */}
                 <Container/>

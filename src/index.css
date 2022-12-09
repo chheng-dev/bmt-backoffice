@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+@success-color: #28a745;
+@warning-color: #eca52b;
+@info-color: #17a2b8;
+@dark-color: #343a40;
+@light-dark-color: #6c757d;
