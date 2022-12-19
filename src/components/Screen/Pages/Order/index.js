@@ -47,9 +47,9 @@ const Order = () => {
                 </div>
                 <div className="flex w-1/2 justify-end items-center">
                     <Link to={`/event/create`}>
-                        <Button size={`large`} className="bg-primary text-white">
+                        {/* <button className="btn-primary">
                             Create Order
-                        </Button>
+                        </button> */}
                     </Link>
                 </div>
             </div>

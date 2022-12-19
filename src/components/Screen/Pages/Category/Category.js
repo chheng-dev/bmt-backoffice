@@ -58,7 +58,7 @@ const Category = () => {
     //       onCancel() {
     //         console.log('Cancel');
     //       },
-          
+
     //     });
     //   };
 
@@ -70,7 +70,7 @@ const Category = () => {
             .then(() => {
                 setLoading(false);
             }, [])
-      
+
     }
 
     useEffect(() => {
@@ -85,12 +85,14 @@ const Category = () => {
         <>
             <div className="w-full h-full">
                 <div className="flex justify-end items-center mb-4">
-                    <Button type="button" className="bg-success text-white px-5">
-                        <Link to="/category/create">
-                            Create Category
-                        </Link>
 
-                    </Button>
+                    <Link to="/category/create">
+                        <button type="button" className="btn-primary">
+                            Create Category
+                        </button>
+
+                    </Link>
+
 
                 </div>
                 <Table className="shadow-sm rounded-lg" bordered size={"small"} dataSource={category} onChange={onChange} pagination={6} scroll={{ x: 1300 }}>
@@ -108,7 +110,6 @@ const Category = () => {
                         title="Slug"
                         dataIndex="name"
                         key="2"
-
                     />
                     <Column
                         title="Image"
@@ -141,7 +142,7 @@ const Category = () => {
                 </Table>
 
 
-               
+
             </div>
             <Outlet />
         </>

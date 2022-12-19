@@ -6,6 +6,9 @@ import { DatePicker } from "antd";
 import Column from "antd/es/table/Column";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom"
+import { Input } from "antd";
+import { Popover } from "antd";
+
 
 
 const { RangePicker } = DatePicker
@@ -42,14 +45,16 @@ const data = [
 const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
 };
-const suffix = (
-    <AudioOutlined
-        style={{
-            fontSize: 16,
-            color: '#1890ff',
-        }}
-    />
+
+const onBlurSearch = () =>{
+    console.log("hello world")
+}
+
+const contentSearch = (
+    <Input placeholder="Search Anythink..." autoFocus onBlur={onBlurSearch}/>
 );
+
+
 
 const Event = () => {
     return (
@@ -61,9 +66,9 @@ const Event = () => {
                     </div>
                     <div className="flex w-1/2 justify-end items-center">
                         <Link to={`/event/create`}>
-                            <Button size={`large`} className="bg-primary text-white">
+                            <button size={`large`} className="btn-primary">
                                 Create Event
-                            </Button>
+                            </button>
                         </Link>
                     </div>
                 </div>
@@ -79,11 +84,16 @@ const Event = () => {
                     <div className="">
                         <div className="mb-4 ">
                             <Space>
-                                <Button type="" className="bg-blue-700 text-white">All Event</Button>
+                                <Popover placement="bottom" title={`Search`} content={contentSearch} trigger="click">
+                                    <Button>Search</Button>
+                                </Popover>
+                                <Button className="">All Event</Button>
                                 <Button className="">Upcoming</Button>
                                 <Button className="">Past Event</Button>
                                 <Button className="">Draft</Button>
-                                <Search placeholder="Search Event...." enterButton suffix={suffix} />
+
+
+
                                 <RangePicker />
                             </Space>
                         </div>

@@ -2804,6 +2804,11 @@ at-least-node@^1.0.0:
   resolved "https://registry.yarnpkg.com/at-least-node/-/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
   integrity sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==
 
+autobind-decorator@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-2.4.0.tgz#ea9e1c98708cf3b5b356f7cf9f10f265ff18239c"
+  integrity sha512-OGYhWUO72V6DafbF8PM8rm3EPbfuyMZcJhtm5/n26IDwO18pohE4eNazLoCGhPiXOCD0gEGmrbU3849QvM8bbw==
+
 autoprefixer@^10.4.13:
   version "10.4.13"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.4.13.tgz#b5136b59930209a321e9fa3dca2e7c4d223e83a8"
@@ -3449,7 +3454,7 @@ core-js@^2.4.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
-core-js@^3.19.2, core-js@^3.6.4:
+core-js@^3.19.2, core-js@^3.26.0, core-js@^3.6.4:
   version "3.26.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.26.1.tgz#7a9816dabd9ee846c1c0fe0e8fcad68f3709134e"
   integrity sha512-21491RRQVzUn0GGM9Z1Jrpr6PNPxPi+Za8OM9q4tksTSnlbXXGKK1nXNg/QvwFYettXvSX6zWKCtHHfjN4puyA==
@@ -6085,6 +6090,21 @@ jest@^27.4.3:
     import-local "^3.0.2"
     jest-cli "^27.5.1"
 
+jodit-react@^1.3.31:
+  version "1.3.31"
+  resolved "https://registry.yarnpkg.com/jodit-react/-/jodit-react-1.3.31.tgz#938f22796a616a29912f95d701409e8bcf2cf42a"
+  integrity sha512-Y+chtAeyDBuj/chbSNtuvcvRHL+XgySzsuYew2fIOm/W/rRSpeL4stSiZaB5Vnorgk70Ivmrb787WwhQ4RMUUQ==
+  dependencies:
+    jodit "^3.20.2"
+
+jodit@^3.20.2:
+  version "3.23.3"
+  resolved "https://registry.yarnpkg.com/jodit/-/jodit-3.23.3.tgz#36666707b41b12f6d5e448ceb0cbb6f5b7a35f33"
+  integrity sha512-lzKh4spzJy5pxRV8a/sy1ZWIvtoDHYrWkRq7b+aXNHH+5YXM/zwmtIaZOOY+n7LEsl4mrVlLXpd1iAT766rR0w==
+  dependencies:
+    autobind-decorator "^2.4.0"
+    core-js "^3.26.0"
+
 js-sdsl@^4.1.4:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.2.0.tgz#278e98b7bea589b8baaf048c20aeb19eb7ad09d0"
@@ -7581,7 +7601,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.8.1:
+prop-types@^15.5.0, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8094,6 +8114,14 @@ react-error-overlay@^6.0.11:
   version "6.0.11"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.11.tgz#92835de5841c5cf08ba00ddd2d677b6d17ff9adb"
   integrity sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==
+
+react-google-autocomplete@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/react-google-autocomplete/-/react-google-autocomplete-2.7.1.tgz#11a661ecf3d187ecc4de1540f741daecc1ad4489"
+  integrity sha512-5iwq0q+eMc6FoBMIbSYcJ86UtQfoSI24zCxS7OnQjy/WcfwMCwmkQ1Ng4QchbnEUPAWFGkQ49/YX/UKJrNNK8Q==
+  dependencies:
+    lodash.debounce "^4.0.8"
+    prop-types "^15.5.0"
 
 react-icons@^4.7.1:
   version "4.7.1"

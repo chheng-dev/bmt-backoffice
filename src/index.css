@@ -2,10 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+.btn-primary{
+    --tw-bg-opacity: 1;
+    background-color: rgb(46 186 226 / var(--tw-bg-opacity));
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    border-radius: 0.375rem;
 
-
-@success-color: #28a745;
-@warning-color: #eca52b;
-@info-color: #17a2b8;
-@dark-color: #343a40;
-@light-dark-color: #6c757d;
+}
+.ant-layout-sider{
+    background-color: white !important;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  .ant-layout-sider-trigger{
+    background-color: white !important;
+    color: #282c34;
+  }

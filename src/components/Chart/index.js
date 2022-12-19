@@ -7,9 +7,9 @@ const Chart = () => {
         <div className="w-full">
             <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="bg-white shadow-md rounded-lg my-4">
-                    <div class=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
-                        <div class="">
-                            <div class="text-lg font-bold text-gray-600">Chart Doughnut</div>
+                    <div className=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
+                        <div className="">
+                            <div className="text-lg font-bold text-gray-600">Chart Doughnut</div>
                         </div>
                     </div>
                     <CChart
@@ -26,9 +26,9 @@ const Chart = () => {
                     />
                 </div>
                 <div className="bg-white shadow-md rounded-lg my-4">
-                    <div class=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
-                        <div class="">
-                            <div class="text-lg font-bold text-gray-600">Chart Polar Area</div>
+                    <div className=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
+                        <div className="">
+                            <div className="text-lg font-bold text-gray-600">Chart Polar Area</div>
                         </div>
                     </div>
                     <CChart
@@ -45,9 +45,9 @@ const Chart = () => {
                     />
                 </div>
                 <div className="bg-white shadow-md rounded-lg my-4">
-                    <div class=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
-                        <div class="">
-                            <div class="text-lg font-bold text-gray-600">Chart Doughnut</div>
+                    <div className=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
+                        <div className="">
+                            <div className="text-lg font-bold text-gray-600">Chart Doughnut</div>
                         </div>
                     </div>
                     <CChart

@@ -3,6 +3,7 @@ import Chart from "./Chart";
 // import Loading from "./Screen/Pages/Loading";
 
 
+
 const Card = () => {
     // const [loading,setLoading] = useState(false)
 

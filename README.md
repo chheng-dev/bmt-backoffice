@@ -16,3 +16,7 @@ For detailed explanation on how things work, check out the [documentation](https
 
 # Icon
 # https://react-icons.github.io/react-icons
+
+
+# Editor Jodit
+# https://xdsoft.net/jodit/

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sider from "antd/es/layout/Sider";
-import { Menu } from "antd";
+import { Menu, Space } from "antd";
 import { NavLink } from "react-router-dom";
 import { BiHome,BiCategory,BiBell,BiUser,BiBarChartAlt } from "react-icons/bi";
 import logo from "../assets/img/BMT-Logo-admin.png"
@@ -38,8 +38,10 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
+                            <Space>
                                 <BiHome />
-                                <span className="ml-2">Dashboard</span>
+                                <span>Dashboard</span>
+                                </Space>
                             </span>
 
                         </NavLink>
@@ -53,8 +55,10 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
+                            <Space>
                                 <BiCategory />
-                                <span className="ml-2">Category</span>
+                                <span>Category</span>
+                                </Space>
                             </span>
 
                         </NavLink>
@@ -68,8 +72,10 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
+                                <Space>
                                 <BiBarChartAlt />
-                                <span className="ml-2">Event</span>
+                                <span >Event</span>
+                                </Space>
                             </span>
 
                         </NavLink>
@@ -83,8 +89,10 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
+                            <Space>
                                 <BiBell />
-                                <span className="ml-2">Order List</span>
+                                <span>Order List</span>
+                                </Space>
                             </span>
 
                         </NavLink>
@@ -98,8 +106,10 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
+                            <Space>
                                 <BiUser />
-                                <span className="ml-2">Customer List</span>
+                                <span>Customer List</span>
+                                </Space>
                             </span>
 
                         </NavLink>
