@@ -9,7 +9,10 @@ import JoditEditor from "jodit-react";
 import { InboxOutlined } from '@ant-design/icons';
 import Dragger from "antd/es/upload/Dragger";
 import { message } from "antd";
-import Autocomplete from "react-google-autocomplete";
+import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
+// import { Input, List } from "antd";
+
+// import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 
 
 const EditEvent = () => {
@@ -33,6 +36,20 @@ const EditEvent = () => {
             console.log('Dropped files', e.dataTransfer.files);
         },
     };
+    const { ref } = usePlacesWidget({
+        apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+        onPlaceSelected: (place) => {
+            console.log(place);
+        },
+        options: {
+            types: ["(regions)"],
+            componentRestrictions: { country: "km" },
+            defaultValue:"Soriya"
+        },
+        strictBounds:false
+    });
+
+
     return (
 
         <div className="w-full">
@@ -75,12 +92,48 @@ const EditEvent = () => {
                     <div className="mb-6">
                         <h3 for="full-name" className="leading-7 text-sm text-gray-600">Location</h3>
                         <Autocomplete
+                            ref={ref}
                             className="border border-gray-200 w-full p-3 rounded-md"
-                            apiKey={`AIzaSyCN1jgYgkuvHq5hET1b0_UF4BCv7zdub0E`}
-                            onPlaceSelected={(place) => {
-                                console.log(place);
-                            }}
+                        // apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+                        // onPlaceSelected={(place) => {
+                        //     console.log(place);
+                        // }}
                         />
+                        {/* <div style={{ width: "250px" }}>
+                            <span>Debounced</span>
+                            <Input.Search
+                                style={{ color: "black" }}
+                                value={value}
+                                placeholder="Debounce 500 ms"
+                                onChange={(evt) => {
+                                    getPlacePredictions({ input: evt.target.value });
+                                    setValue(evt.target.value);
+                                }}
+                                loading={isPlacePredictionsLoading}
+                            />
+                            <div
+                                style={{
+                                    marginTop: "20px",
+                                    width: "200px",
+                                    height: "200px",
+                                    display: "flex",
+                                    flex: "1",
+                                    flexDirection: "column",
+                                    marginBottom: "100px",
+                                }}
+                            >
+                                {!isPlacePredictionsLoading && (
+                                    <List
+                                        dataSource={placePredictions}
+                                        renderItem={(item) => (
+                                            <List.Item onClick={() => setValue(item.description)}>
+                                                <List.Item.Meta title={item.description} />
+                                            </List.Item>
+                                        )}
+                                    />
+                                )}
+                            </div>
+                        </div> */}
                     </div>
                     <div className="mb-6">
                         <h3 for="full-name" className="leading-7 text-sm text-gray-600">Image</h3>

@@ -19,7 +19,7 @@ const Sidebar = () => {
         <>
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="bg-white">
                 <div
-                    className="bg-red-800"
+                    className="px-2"
                     style={{
                         height: 32,
                         margin: 16,
@@ -31,7 +31,7 @@ const Sidebar = () => {
                 <Menu theme="light" onClick={SelectedKey} selectedKeys={[current]}>
                     <Menu.Item key="1">
                         <NavLink
-                            to="/"
+                            to={`/`}
                             className={isActive =>
                                 "nav-link" + (!isActive ? " unselected" : "")
                             }
@@ -48,7 +48,7 @@ const Sidebar = () => {
                     </Menu.Item>
                     <Menu.Item key="2">
                         <NavLink
-                            to="/category"
+                            to={"/dashboard/category"}
                             className={isActive =>
                                 "nav-link" + (!isActive ? " unselected" : "")
                             }
@@ -65,7 +65,7 @@ const Sidebar = () => {
                     </Menu.Item>
                     <Menu.Item key="3">
                         <NavLink
-                            to="/event"
+                            to="/dashboard/event"
                             className={isActive =>
                                 "nav-link" + (!isActive ? " unselected" : "")
                             }
@@ -82,7 +82,7 @@ const Sidebar = () => {
                     </Menu.Item>
                     <Menu.Item key="4">
                         <NavLink
-                            to="/order"
+                            to="/dashboard/order"
                             className={isActive =>
                                 "nav-link" + (!isActive ? " unselected" : "")
                             }
@@ -99,7 +99,7 @@ const Sidebar = () => {
                     </Menu.Item>
                     <Menu.Item key="5">
                         <NavLink
-                            to="/events"
+                            to="dashboard/events"
                             className={isActive =>
                                 "nav-link" + (!isActive ? " unselected" : "")
                             }

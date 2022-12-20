@@ -91,9 +91,9 @@ const Chart = () => {
 
             <div className="grid grid-cols-1 md:grid md:grid-cols-2 gap-4">
                 <div className="bg-white shadow-md rounded-lg my-4">
-                    <div class=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
-                        <div class="">
-                            <div class="text-lg font-bold text-gray-600">Chart Line</div>
+                    <div className=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
+                        <div className="">
+                            <div className="text-lg font-bold text-gray-600">Chart Line</div>
                         </div>
                     </div>
                     <div className="p-4">
@@ -124,9 +124,9 @@ const Chart = () => {
                     </div>
                 </div>
                 <div className="bg-white shadow-md rounded-lg my-4">
-                    <div class=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
-                        <div class="">
-                            <div class="text-lg font-bold text-gray-600">Chart Bar</div>
+                    <div className=" w-full items-center justify-between border-b border-gray-400 p-4 mb-4">
+                        <div className="">
+                            <div className="text-lg font-bold text-gray-600">Chart Bar</div>
                         </div>
                     </div>
                     <div className="p-4">

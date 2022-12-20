@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Table, Button } from 'antd';
-import { Link } from "react-router-dom";
+import { Switch, Route,Link,withRouter } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { Space } from "antd";
 import Column from "antd/es/table/Column";
 import Loading from "../Loading";
 import axios from "axios"
-// import { ExclamationCircleFilled } from '@ant-design/icons';
-
-
+import CreateCategory from "./Create";
 
 const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
@@ -16,7 +14,7 @@ const onChange = (pagination, filters, sorter, extra) => {
 
 
 
-const Category = () => {
+const Category = (props) => {
 
     const [category, setCategory] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -33,34 +31,6 @@ const Category = () => {
             console.log(error);
         }
     }
-
-    // const showDeleteConfirm = (record) => {
-    //     console.log(record)
-    //     confirm({
-    //       title: 'Are you sure delete this task?',
-    //       icon: <ExclamationCircleFilled />,
-    //       content: 'Some descriptions',
-    //       okText: 'Yes',
-    //       okType: 'danger',
-    //       cancelText: 'No',
-    //       async onOk() {
-    //         const categoryId = record.id;
-    //         console.log(categoryId)
-    //         setLoading(true);
-    //         await axios.delete(`https://api.escuelajs.co/api/v1/categories/6`)
-    //             .then(() => {
-    //                 setLoading(false);
-
-    //             }, [])
-    //         setLoading(false);
-
-    //       },
-    //       onCancel() {
-    //         console.log('Cancel');
-    //       },
-
-    //     });
-    //   };
 
     const handleDeleteCategory = async (record) => {
         let categoryId = record.id;
@@ -80,73 +50,75 @@ const Category = () => {
     if (loading) {
         return <Loading />
     }
-
+    const {match} = props;
     return (
+        
         <>
-            <div className="w-full h-full">
-                <div className="flex justify-end items-center mb-4">
+            <Fragment>
+                <div className="w-full h-full">
+                    <div className="flex justify-end items-center mb-4">
 
-                    <Link to="/category/create">
-                        <button type="button" className="btn-primary">
-                            Create Category
-                        </button>
+                        <Link to={`${match.path}/create`}>
+                            <button type="button" className="btn-primary">
+                                Create Category
+                            </button>
 
-                    </Link>
+                        </Link>
+
+
+                    </div>
+                    <Table className="shadow-sm rounded-lg" bordered size={"small"} dataSource={category} onChange={onChange} pagination={6} scroll={{ x: 1300 }}>
+                        <Column
+                            title="Category name"
+                            dataIndex="name"
+                            key="1"
+                            render={(name) => (
+                                <>
+                                    <span className="bg-gray-400 px-3 rounded-lg text-white py-1">{name}</span>
+                                </>
+                            )}
+                        />
+                        <Column
+                            title="Slug"
+                            dataIndex="name"
+                            key="2"
+                        />
+                        <Column
+                            title="Image"
+                            dataIndex="image"
+                            key="3"
+                            width={200}
+                            render={(image) => (
+                                <>
+                                    <img src={image} className="w-16 rounded-lg" />
+                                </>
+                            )}
+                        />
+                        <Column
+                            title="Action"
+                            key="4"
+                            width={200}
+                            render={(text, record) => (
+                                <>
+                                    <Space>
+                                        <Link to={`${record.id}`}>
+                                            <Button>Edit</Button>
+                                        </Link>
+                                        <Link>
+                                            <Button type="primary" onClick={() => handleDeleteCategory(record)} danger>Delete</Button>
+                                        </Link>
+                                    </Space>
+                                </>
+                            )}
+                        />
+                    </Table>
+
 
 
                 </div>
-                <Table className="shadow-sm rounded-lg" bordered size={"small"} dataSource={category} onChange={onChange} pagination={6} scroll={{ x: 1300 }}>
-                    <Column
-                        title="Category name"
-                        dataIndex="name"
-                        key="1"
-                        render={(name) => (
-                            <>
-                                <span className="bg-gray-400 px-3 rounded-lg text-white py-1">{name}</span>
-                            </>
-                        )}
-                    />
-                    <Column
-                        title="Slug"
-                        dataIndex="name"
-                        key="2"
-                    />
-                    <Column
-                        title="Image"
-                        dataIndex="image"
-                        key="3"
-                        width={200}
-                        render={(image) => (
-                            <>
-                                <img src={image} className="w-16 rounded-lg" />
-                            </>
-                        )}
-                    />
-                    <Column
-                        title="Action"
-                        key="4"
-                        width={200}
-                        render={(text, record) => (
-                            <>
-                                <Space>
-                                    <Link to={`${record.id}`}>
-                                        <Button>Edit</Button>
-                                    </Link>
-                                    <Link>
-                                        <Button type="primary" onClick={() => handleDeleteCategory(record)} danger>Delete</Button>
-                                    </Link>
-                                </Space>
-                            </>
-                        )}
-                    />
-                </Table>
-
-
-
-            </div>
-            <Outlet />
+            </Fragment>
         </>
     )
 }
 
-export default Category;
+export default withRouter(Category);

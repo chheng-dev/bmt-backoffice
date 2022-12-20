@@ -20,3 +20,7 @@ For detailed explanation on how things work, check out the [documentation](https
 
 # Editor Jodit
 # https://xdsoft.net/jodit/
+
+
+# Validation
+# https://www.npmjs.com/package/react-validation
