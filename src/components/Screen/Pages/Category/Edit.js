@@ -51,21 +51,29 @@ const EditCategory = () => {
 
     return (
         <>
-            <div className="bg-white shadow-sm p-4 rounded-lg max-w-4xl">
-                <div>
-                    <h2 className="my-3">Category</h2>
-                    <Input value={category.name} onChange={(e) => setCategory(e.target.value)}  />
+            <div className="w-full">
+                    <div className="my-4 flex bg-white p-4">
+                        <h2 className="text-xl font-bold">Update Category</h2>
+                    </div>
+                    <div className="w-full bg-white p-4">
+                      
+                            <div className="max-w-4xl mx-auto">
+                                <h1 className="text-xl font-semibold mb-4">Category Info</h1>
+                                <div>
+                                    <h2 className="my-3">Category</h2>
+                                    <Input value={category.name} onChange={(e) => setCategory(e.target.value)}  />
+                                </div>
+                                <div>
+                                    <h2 className="my-3">Slug (URL)</h2>
+                                    <Input value={category.name} onChange={(e) => setSlugName(e.target.value)} />
+                                </div>
+                                <div className="mt-3 mb-1 flex justify-end items-center">
+                                    <button type="button" className="btn-primary" onClick={()=>handleEdit()}>Update & Continue</button>
+                                </div>
+                            </div>
+                        
+                    </div>
                 </div>
-                <div>
-                    <h2 className="my-3" >Slug (URL)</h2>
-                    <Input value={category.name} onChange={(e) => setSlugName(e.target.value)} />
-                </div>
-                <div className="flex justify-start mt-4">
-                    <Button type="button" className="bg-success text-white px-5" onClick={()=>handleEdit()}>
-                        Update
-                    </Button>
-                </div>
-            </div>
         </>
     )
 }

@@ -8,11 +8,11 @@ const App = () => {
   return (
     <>
       <Switch>
-        <ProtectedRoute path="/dashboard">
+        <ProtectedRoute path="/admin">
           <Dashboard />
         </ProtectedRoute>
         <Route exact path="/">
-          <Redirect exact from="/" to="/dashboard" />
+          <Redirect exact from="/" to="/admin" />
         </Route>
         <Route path="/login">
           <Login />

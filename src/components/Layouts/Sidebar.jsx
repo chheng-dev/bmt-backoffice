@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sider from "antd/es/layout/Sider";
 import { Menu, Space } from "antd";
 import { NavLink } from "react-router-dom";
-import { BiHome,BiCategory,BiBell,BiUser,BiBarChartAlt } from "react-icons/bi";
+import { FiBarChart,FiHome,FiGrid,FiFolderMinus,FiUsers } from "react-icons/fi";
 import logo from "../assets/img/BMT-Logo-admin.png"
 
 const Sidebar = () => {
@@ -39,7 +39,7 @@ const Sidebar = () => {
 
                             <span className="flex items-center">
                             <Space>
-                                <BiHome />
+                                <FiHome className="text-xl"/>
                                 <span>Dashboard</span>
                                 </Space>
                             </span>
@@ -48,7 +48,7 @@ const Sidebar = () => {
                     </Menu.Item>
                     <Menu.Item key="2">
                         <NavLink
-                            to={"/dashboard/category"}
+                            to={"/admin/category"}
                             className={isActive =>
                                 "nav-link" + (!isActive ? " unselected" : "")
                             }
@@ -56,7 +56,7 @@ const Sidebar = () => {
 
                             <span className="flex items-center">
                             <Space>
-                                <BiCategory />
+                                <FiGrid className="text-xl"/>
                                 <span>Category</span>
                                 </Space>
                             </span>
@@ -65,7 +65,7 @@ const Sidebar = () => {
                     </Menu.Item>
                     <Menu.Item key="3">
                         <NavLink
-                            to="/dashboard/event"
+                            to="/admin/event"
                             className={isActive =>
                                 "nav-link" + (!isActive ? " unselected" : "")
                             }
@@ -73,7 +73,7 @@ const Sidebar = () => {
 
                             <span className="flex items-center">
                                 <Space>
-                                <BiBarChartAlt />
+                                <FiFolderMinus className="text-xl"/>
                                 <span >Event</span>
                                 </Space>
                             </span>
@@ -82,7 +82,7 @@ const Sidebar = () => {
                     </Menu.Item>
                     <Menu.Item key="4">
                         <NavLink
-                            to="/dashboard/order"
+                            to="/admin/order"
                             className={isActive =>
                                 "nav-link" + (!isActive ? " unselected" : "")
                             }
@@ -90,7 +90,7 @@ const Sidebar = () => {
 
                             <span className="flex items-center">
                             <Space>
-                                <BiBell />
+                                <FiBarChart className="text-xl" />
                                 <span>Order List</span>
                                 </Space>
                             </span>
@@ -99,7 +99,7 @@ const Sidebar = () => {
                     </Menu.Item>
                     <Menu.Item key="5">
                         <NavLink
-                            to="dashboard/events"
+                            to="admin/events"
                             className={isActive =>
                                 "nav-link" + (!isActive ? " unselected" : "")
                             }
@@ -107,7 +107,7 @@ const Sidebar = () => {
 
                             <span className="flex items-center">
                             <Space>
-                                <BiUser />
+                                <FiUsers className="text-xl"/>
                                 <span>Customer List</span>
                                 </Space>
                             </span>
