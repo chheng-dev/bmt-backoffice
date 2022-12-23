@@ -50,8 +50,6 @@ const CreateEvent = () => {
                             </div>
                             <div className="mb-6">
                                 <h3 for="full-name" className="leading-7 text-sm text-gray-600">Description</h3>
-
-
                                 <JoditEditor />
                             </div>
                             <div className="w-full mb-6">
@@ -92,10 +90,9 @@ const CreateEvent = () => {
                                     <p className="ant-upload-drag-icon">
                                         <InboxOutlined />
                                     </p>
-                                    <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                                    <p className="ant-upload-text">Upload a file or drag and drop</p>
                                     <p className="ant-upload-hint">
-                                        Support for a single or bulk upload. Strictly prohibit from uploading company data or other
-                                        band files
+                                    PNG, JPG, GIF up to 10MB
                                     </p>
                                 </Dragger>
                             </div>

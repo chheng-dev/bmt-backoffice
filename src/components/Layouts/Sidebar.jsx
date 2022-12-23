@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Sider from "antd/es/layout/Sider";
 import { Menu, Space } from "antd";
 import { NavLink } from "react-router-dom";
-import { FiBarChart,FiHome,FiGrid,FiFolderMinus,FiUsers } from "react-icons/fi";
-import logo from "../assets/img/BMT-Logo-admin.png"
+import { FiShoppingCart, FiHome, FiGrid, FiFolderMinus, FiSettings, FiCalendar,FiUser,FiUsers,FiShoppingBag,FiLogOut } from "react-icons/fi";
 
 const Sidebar = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -25,10 +24,10 @@ const Sidebar = () => {
                         margin: 16,
                     }}
                 >
-                    <img className="w-32 p-2" src={logo}/>
+                    {/* <img className="w-32 p-2" src={logo} /> */}
                 </div>
 
-                <Menu theme="light" onClick={SelectedKey} selectedKeys={[current]}>
+                <Menu theme="light" onClick={SelectedKey} selectedKeys={[current]} mode={"inline"} >
                     <Menu.Item key="1">
                         <NavLink
                             to={`/`}
@@ -38,9 +37,9 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
-                            <Space>
-                                <FiHome className="text-xl"/>
-                                <span>Dashboard</span>
+                                <Space>
+                                    <FiHome className="text-xl" />
+                                    <span>Dashboard</span>
                                 </Space>
                             </span>
 
@@ -55,9 +54,9 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
-                            <Space>
-                                <FiGrid className="text-xl"/>
-                                <span>Category</span>
+                                <Space>
+                                    <FiGrid className="text-xl" />
+                                    <span>Category</span>
                                 </Space>
                             </span>
 
@@ -73,8 +72,8 @@ const Sidebar = () => {
 
                             <span className="flex items-center">
                                 <Space>
-                                <FiFolderMinus className="text-xl"/>
-                                <span >Event</span>
+                                    <FiFolderMinus className="text-xl" />
+                                    <span >All Events</span>
                                 </Space>
                             </span>
 
@@ -89,15 +88,32 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
-                            <Space>
-                                <FiBarChart className="text-xl" />
-                                <span>Order List</span>
+                                <Space>
+                                    <FiShoppingCart className="text-xl" />
+                                    <span>Orders</span>
                                 </Space>
                             </span>
 
                         </NavLink>
                     </Menu.Item>
                     <Menu.Item key="5">
+                        <NavLink
+                            to="/admin/checkIn"
+                            className={isActive =>
+                                "nav-link" + (!isActive ? " unselected" : "")
+                            }
+                        >
+
+                            <span className="flex items-center">
+                                <Space>
+                                    <FiLogOut className="text-xl" />
+                                    <span>Check In</span>
+                                </Space>
+                            </span>
+
+                        </NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="6">
                         <NavLink
                             to="admin/events"
                             className={isActive =>
@@ -106,14 +122,137 @@ const Sidebar = () => {
                         >
 
                             <span className="flex items-center">
-                            <Space>
-                                <FiUsers className="text-xl"/>
-                                <span>Customer List</span>
+                                <Space>
+                                    <FiCalendar className="text-xl" />
+                                    <span>Report</span>
                                 </Space>
                             </span>
 
                         </NavLink>
                     </Menu.Item>
+                    <Menu.SubMenu key="users" title={
+                        <>
+                            <div className="flex items-center">
+                                <Space>
+                                    <FiUsers className="text-xl" />
+                                    <span>Users</span>
+                                </Space>
+                            </div>
+                        </>
+                    }>
+                        <Menu.Item key="users">
+                            <NavLink
+                                to="/admin/users"
+                                className={isActive =>
+                                    "nav-link" + (!isActive ? " unselected" : "")
+                                }
+                            >
+
+                                <span className="flex items-center">
+                                    <Space>
+                                        <span>User List</span>
+                                    </Space>
+                                </span>
+
+                            </NavLink>
+                        </Menu.Item>
+                        {/* <Menu.Item key="users">
+                            <NavLink
+                                to="admin/events"
+                                className={isActive =>
+                                    "nav-link" + (!isActive ? " unselected" : "")
+                                }
+                            >
+
+                                <span className="flex items-center">
+                                    <Space>
+                                        <FiUsers className="text-xl" />
+                                        <span>Users</span>
+                                    </Space>
+                                </span>
+
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="9">
+                            <NavLink
+                                to="admin/events"
+                                className={isActive =>
+                                    "nav-link" + (!isActive ? " unselected" : "")
+                                }
+                            >
+
+                                <span className="flex items-center">
+                                    <Space>
+                                        <FiShoppingBag className="text-xl" />
+                                        <span>Vendor</span>
+                                    </Space>
+                                </span>
+
+                            </NavLink>
+                        </Menu.Item> */}
+                    </Menu.SubMenu>
+                    <Menu.SubMenu key="setting" title={
+                        <>
+                            <div className="flex items-center">
+                                <Space>
+                                    <FiSettings className="text-xl" />
+                                    <span>Setting</span>
+                                </Space>
+                            </div>
+                        </>
+                    }>
+                        <Menu.Item key="7">
+                            <NavLink
+                                to="admin/events"
+                                className={isActive =>
+                                    "nav-link" + (!isActive ? " unselected" : "")
+                                }
+                            >
+
+                                <span className="flex items-center">
+                                    <Space>
+                                        <FiUser className="text-xl" />
+                                        <span>Account</span>
+                                    </Space>
+                                </span>
+
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="8">
+                            <NavLink
+                                to="admin/events"
+                                className={isActive =>
+                                    "nav-link" + (!isActive ? " unselected" : "")
+                                }
+                            >
+
+                                <span className="flex items-center">
+                                    <Space>
+                                        <FiUsers className="text-xl" />
+                                        <span>User Management</span>
+                                    </Space>
+                                </span>
+
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="9">
+                            <NavLink
+                                to="admin/events"
+                                className={isActive =>
+                                    "nav-link" + (!isActive ? " unselected" : "")
+                                }
+                            >
+
+                                <span className="flex items-center">
+                                    <Space>
+                                        <FiShoppingBag className="text-xl" />
+                                        <span>Vendor</span>
+                                    </Space>
+                                </span>
+
+                            </NavLink>
+                        </Menu.Item>
+                    </Menu.SubMenu>
                 </Menu>
 
             </Sider>

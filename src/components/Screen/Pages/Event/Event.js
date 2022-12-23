@@ -2,11 +2,12 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Button, Space, Table } from 'antd';
 import { DatePicker } from "antd";
 import Column from "antd/es/table/Column";
-import { BiEdit, BiTrash } from "react-icons/bi";
 import { Link, withRouter } from "react-router-dom"
-import { Input } from "antd";
 import { Popover } from "antd";
 import Loading from "../Loading";
+import { Input, Tooltip } from "antd";
+import { FiInfo } from "react-icons/fi";
+import {Select} from "antd";
 
 
 const { RangePicker } = DatePicker
@@ -16,7 +17,81 @@ const onBlurSearch = () => {
 }
 
 const contentSearch = (
-    <Input placeholder="Search Anythink..." autoFocus onBlur={onBlurSearch} />
+    <div className="">
+        {/* <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 dark:border-gray-400 dark:bg-gray-400">
+            <h3 class="font-semibold text-gray-900 dark:text-white">Search</h3>
+        </div> */}
+        <div class="px-3 py-2 text-gray-500">
+            <Input
+                placeholder="Enter your username"
+                suffix={
+                    <Tooltip title="Search by Event Name">
+                        <FiInfo />
+                    </Tooltip>
+                }
+            />
+        </div>
+        <div className="mt-3 px-3 py-1 bg-gray-200 text-white">
+            <div className="flex">
+                <div className="flex w-1/2 justify-start items-center">
+                    <Link>Reset</Link>
+                </div>
+                <div className="flex w-1/2 justify-end items-center">
+                    <Link>
+                        <span className="text-gray-400">Apply</span>
+                    </Link>
+                </div>
+            </div>
+        </div>
+    </div>
+);
+
+const contentAllEvent = (
+    <div className="">
+        {/* <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 dark:border-gray-400 dark:bg-gray-400">
+            <h3 class="font-semibold text-gray-900 dark:text-white">Search</h3>
+        </div> */}
+        <div class="px-3 py-2 text-gray-500">
+            <Select
+                showSearch
+                style={{
+                    width: 200,
+                }}
+                placeholder="Search Event Type"
+                optionFilterProp="children"
+                filterOption={(input, option) => (option?.label ?? '').includes(input)}
+                filterSort={(optionA, optionB) =>
+                    (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                }
+                options={[
+                    {
+                        value: '1',
+                        label: 'Upcoming',
+                    },
+                    {
+                        value: '2',
+                        label: 'Past Event',
+                    },
+                    {
+                        value: '3',
+                        label: 'Draft',
+                    },
+                ]}
+            />
+        </div>
+        <div className="mt-3 px-3 py-1 bg-gray-200 text-white">
+            <div className="flex">
+                <div className="flex w-1/2 justify-start items-center">
+                    <Link>Reset</Link>
+                </div>
+                {/* <div className="flex w-1/2 justify-end items-center">
+                    <Link>
+                        <span className="text-gray-400">Apply</span>
+                    </Link>
+                </div> */}
+            </div>
+        </div>
+    </div>
 );
 
 
@@ -33,7 +108,7 @@ const Event = (props) => {
             const respone = await fetch(`https://dummyjson.com/products`);
             const data = await respone.json();
             setEvent(data.products)
-           console.log(data.products)
+            console.log(data.products)
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -46,16 +121,16 @@ const Event = (props) => {
         console.log('params', pagination, filters, sorter, extra);
         setLoading(false)
     };
-    
 
-    useEffect(()=>{
+
+    useEffect(() => {
         // setLoading(true)
         getEventList();
         // setLoading(false)
-    },[])
-    
+    }, [])
+
     const { match } = props;
-        
+
     if (loading) {
         return <Loading />
     }
@@ -79,16 +154,12 @@ const Event = (props) => {
                         <div className="">
                             <div className="mb-4 ">
                                 <Space>
-                                    <Popover placement="bottom" title={`Search`} content={contentSearch} trigger="click">
+                                    <Popover placement="bottom" content={contentSearch} trigger="click">
                                         <Button>Search</Button>
                                     </Popover>
-                                    <Button className="">All Event</Button>
-                                    <Button className="">Upcoming</Button>
-                                    <Button className="">Past Event</Button>
-                                    <Button className="">Draft</Button>
-
-
-
+                                    <Popover placement="bottom" content={contentAllEvent} trigger="click">
+                                        <Button>All Events</Button>
+                                    </Popover>
                                     <RangePicker />
                                 </Space>
                             </div>
@@ -132,6 +203,17 @@ const Event = (props) => {
                                     width={200}
                                 />
                                 <Column
+                                    title="Qty"
+                                    key="qty"
+                                    width={120}
+                                    align="center"
+                                    render={(_, record) => (
+                                        <span className="font-bold">
+                                            {record.stock}
+                                        </span>
+                                    )}
+                                />
+                                <Column
                                     title="Price"
                                     key="price"
                                     width={120}
@@ -139,6 +221,17 @@ const Event = (props) => {
                                     render={(_, record) => (
                                         <span className="font-bold text-red-700">
                                             ${record.price}
+                                        </span>
+                                    )}
+                                />
+                                <Column
+                                    title="Created At"
+                                    key="createdAt"
+                                    width={120}
+                                    align="center"
+                                    render={(_, record) => (
+                                        <span className="">
+                                            22-01-2022
                                         </span>
                                     )}
                                 />

@@ -8,7 +8,14 @@ import EditCategory from "./Screen/Pages/Category/Edit";
 import Event from "./Screen/Pages/Event/Event";
 import EditEvent from "./Screen/Pages/Event/Edit";
 import CreateEvent from "./Screen/Pages/Event/Create";
-import NotFound from ".//Screen/Pages/404/index"
+import Order from "./Screen/Pages/Order/index";
+import { CheckIn } from "./Screen/Pages/Checkin";
+import User  from "./Screen/Pages/User/User";
+import {CreateUser} from "./Screen/Pages/User/Create";
+import EditUser  from "./Screen/Pages/User/Edit";
+import NotFound from ".//Screen/Pages/404/index";
+import { Test } from "../Test";
+
 
 
 class Dashboard extends React.Component {
@@ -61,6 +68,27 @@ class Dashboard extends React.Component {
                             </Route>
                             <Route path={`${match.path}/event/:id`}>
                                 <EditEvent />
+                            </Route>
+
+                            {/* Order Pages */}
+                            <Route exact path={`${match.path}/order`}>
+                                <Order />
+                            </Route>
+
+                            {/* CheckIn */}
+                            <Route exact path={`${match.path}/checkIn`}>
+                                <CheckIn/>
+                            </Route>
+
+                            {/* Users List */}
+                            <Route exact path={`${match.path}/users`}>
+                                <User/>
+                            </Route>
+                            <Route path={`${match.path}/users/create`}>
+                                <CreateUser/>
+                            </Route>
+                            <Route path={`${match.path}/users/:id`}>
+                                <EditUser/>
                             </Route>
 
                             {/* Not found Route */}
