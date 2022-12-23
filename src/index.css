@@ -58,3 +58,8 @@
   background: #00000040;
 }
 
+.bg-login{
+  background: url("./components//assets//img//bg-login.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
