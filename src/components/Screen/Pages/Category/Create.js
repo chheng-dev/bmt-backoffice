@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import Input from "antd/es/input/Input";
-import { Button } from "antd";
+import { Form,Button } from "antd";
 import axios from "axios"
 import Loading from "../Loading";
 
@@ -39,22 +39,56 @@ const CreateCategory = () => {
                         <h2 className="text-xl font-bold">Create Category</h2>
                     </div>
                     <div className="w-full bg-white p-4">
-                      
-                            <div className="max-w-4xl mx-auto">
+
+                        <div className="max-w-4xl mx-auto">
+                            <Form
+                                name="Category"
+                                labelCol={{
+                                    span: 8,
+                                }}
+                                wrapperCol={{
+                                    span: 16,
+                                }}
+                                initialValues={{
+                                    remember: true,
+                                }}
+                                autoComplete="off"
+                            >
                                 <h1 className="text-xl font-semibold mb-4">Category Info</h1>
                                 <div>
-                                    <h2 className="my-3">Category</h2>
-                                    <Input onChange={(e) => setCategoryName(e.target.value)} />
+                                    <Form.Item
+                                        label="Category"
+                                        name="category"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please input your category!',
+                                            },
+                                        ]}
+                                    >
+                                        <Input onChange={(e) => setCategoryName(e.target.value)} />
+                                    </Form.Item>
                                 </div>
                                 <div>
-                                    <h2 className="my-3">Slug (URL)</h2>
-                                    <Input onChange={(e) => setSlugName(e.target.value)} />
+                                    <Form.Item
+                                        label="Slug"
+                                        name="slug"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please input your slug!',
+                                            },
+                                        ]}
+                                    >
+                                        <Input onChange={(e) => setSlugName(e.target.value)} />
+                                    </Form.Item>
                                 </div>
                                 <div className="mt-3 mb-1 flex justify-end items-center">
-                                    <button type="button" className="btn-primary">Save & Continue</button>
+                                    <Button type="primary" htmlType="submit">Save & Continue</Button>
                                 </div>
-                            </div>
-                        
+                            </Form>
+                        </div>
+
                     </div>
                 </div>
             </Fragment>

@@ -31,7 +31,7 @@ const contentSearch = (
                 }
             />
         </div>
-        <div className="mt-3 px-3 py-1 bg-gray-200 text-white">
+        <div className="mt-3 px-3 py-1 bg-lightGray text-white">
             <div className="flex">
                 <div className="flex w-1/2 justify-start items-center">
                     <Link>Reset</Link>
@@ -144,9 +144,9 @@ const Event = (props) => {
                         </div>
                         <div className="flex w-1/2 justify-end items-center">
                             <Link to={`${match.path}/create`}>
-                                <button size={`large`} className="btn-primary">
+                                <Button size={`large`} type="primary">
                                     Create Event
-                                </button>
+                                </Button>
                             </Link>
                         </div>
                     </div>

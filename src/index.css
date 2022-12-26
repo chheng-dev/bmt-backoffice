@@ -63,3 +63,19 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.ant-btn-primary{
+  background-color: #2EBAE2;
+}
+.ant-btn-primary:not(:disabled):hover{
+  background-color: #52C6E7;
+}
+
+.ant-steps .ant-steps-item-process .ant-steps-item-icon{
+  background-color: #2EBAE2;
+  border-color:#2EBAE2;
+}
+
+.ant-steps-item-content>.ant-steps-item-title::after{
+  background-color:#2EBAE2;
+}

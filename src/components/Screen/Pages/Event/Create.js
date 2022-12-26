@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Input from "antd/es/input/Input";
 import { DatePicker } from "antd";
-import { TimePicker } from "antd";
+import { TimePicker, Button, Steps, Form } from "antd";
 import dayjs from 'dayjs';
 import { Space } from "antd";
 import 'draft-js/dist/Draft.css';
@@ -34,7 +34,162 @@ const CreateEvent = () => {
         },
     };
 
+    const { Step } = Steps;
+
+    const [eventTitle, setEventTitle] = useState("");
+    const [organizer, setOrganizer] = useState("");
+
+
+    function FirstContent() {
+        return (
+            <>
+                <div className="">
+                    <Form.Item
+                        label="Event Title"
+                        name="eventTitle"
+                        rules={[{ required: true, message: 'Please input your event title!' }]}
+                    >
+                        <Input onChange={(e) => setEventTitle(e.target.value)} />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Organizer"
+                        name="organizer"
+                        rules={[{ required: true, message: 'Please input organizer!' }]}
+                    >
+                        <Input onChange={(e) => setOrganizer(e.target.value)} />
+                    </Form.Item>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <Form.Item
+                            label="Category"
+                            name="category"
+                            rules={[{ required: true, message: 'Please input category!' }]}
+                            labelCol={{ span: 8 }}
+
+                        >
+                            <Input onChange={(e) => setOrganizer(e.target``.value)} />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Sub-Category"
+                            name="subCategory"
+                            rules={[{ required: true, message: 'Please input sub-category!' }]}
+                            labelCol={{ span: 8 }}
+
+                        >
+                            <Input onChange={(e) => setOrganizer(e.target.value)} className="w-72 ml-2" />
+                        </Form.Item>
+                    </div>
+
+                    <Form.Item
+                        label="Location"
+                        name="location"
+                        rules={[{ required: true, message: 'Please input location!' }]}
+                    >
+                        <Autocomplete
+                            className="w-full p-1 rounded-md border border-lightGray-700"
+                            apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+                            onPlaceSelected={(place) => {
+                                console.log(place);
+                            }}
+                        />
+                    </Form.Item>
+
+                    {/* <div className="grid grid-cols-2 gap-4">
+                        <Form.Item
+                            label="Event Starts"
+                            name="eventStart"
+                            rules={[{ required: true, message: 'Please input event start!' }]}
+                            labelCol={{ span: 8 }}
+                        >
+                            <Input onChange={(e) => setOrganizer(e.target.value)}/>
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Event Ends"
+                            name="eventEnd"
+                            rules={[{ required: true, message: 'Please input event end!' }]}
+                            labelCol={{ span: 8 }}
+                        >
+                            <Input onChange={(e) => setOrganizer(e.target.value)}  />
+                        </Form.Item>
+                    </div> */}
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <Form.Item
+                            label="Event Starts"
+                            name="eventStart"
+                            rules={[{ required: true, message: 'Please input category!' }]}
+                            labelCol={{ span: 8 }}
+
+                        >
+                            <Input onChange={(e) => setOrganizer(e.target.value)}/>
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Event Ends"
+                            name="eventEnd"
+                            rules={[{ required: true, message: 'Please input sub-category!' }]}
+                            labelCol={{ span: 8 }}
+                            
+                        >
+                            <Input onChange={(e) => setOrganizer(e.target.value)} className="w-72 ml-2" />
+                        </Form.Item>
+                    </div>
+
+                </div>
+            </>
+        );
+    }
+
+    function SecondContent() {
+        return (
+            <>
+                <h1>Step2</h1>
+            </>
+        );
+    }
+
+    function ThirdContent() {
+        return (
+            <>
+                <h1>Step3</h1>
+            </>
+        );
+    }
+
+    const steps = [
+        {
+            title: "Base Info",
+            content: <FirstContent />
+        },
+        {
+            title: "Second",
+            content: <SecondContent />
+        },
+        {
+            title: "Last",
+            content: <ThirdContent />
+        }
+    ];
+
+    const [current, setCurrent] = useState(0);
+
+    const next = () => {
+        if (eventTitle) {
+            // alert("helloworld");
+            setCurrent(current + 1);
+        }
+    };
+
+    const prev = () => {
+        setCurrent(current - 1);
+    };
+
+
     return (
+
         <>
             <Fragment>
                 <div className="w-full">
@@ -43,62 +198,42 @@ const CreateEvent = () => {
                     </div>
                     <div className="w-full bg-white p-4">
                         <div className="max-w-4xl mx-auto">
-                            <h1 className="text-xl font-semibold mb-4">Basic Info</h1>
-                            <div className="mb-6">
-                                <h3 for="full-name" className="leading-7 text-sm text-gray-600">Event Title</h3>
-                                <Input />
-                            </div>
-                            <div className="mb-6">
-                                <h3 for="full-name" className="leading-7 text-sm text-gray-600">Description</h3>
-                                <JoditEditor />
-                            </div>
-                            <div className="w-full mb-6">
-                                <div className="flex gap-4">
-                                    <div className="flex w-1/2 justify-start items-center">
-                                        <div className="block w-full">
-                                            <h3 for="full-name" className="leading-7 text-sm text-gray-600">Event Starts</h3>
-                                            <Space>
-                                                <DatePicker className="w-72" />
-                                                <TimePicker defaultValue={dayjs('12:08', format)} format={format} />
-                                            </Space>
-                                        </div>
-                                    </div>
-                                    <div className="flex w-1/2 justify-end  items-center">
-                                        <div className="block">
-                                            <h3 for="full-name" className="leading-7 text-sm text-gray-600">Event Ends</h3>
-                                            <Space>
-                                                <DatePicker className="md:w-80" />
-                                                <TimePicker defaultValue={dayjs('12:08', format)} format={format} />
-                                            </Space>
-                                        </div>
-                                    </div>
+                            <Form
+                                name="basic"
+                                labelCol={{ span: 4 }}
+                                wrapperCol={{ span: 32 }}
+                                initialValues={{ remember: true }}
+                            // onFinish={onFinish}
+                            // onFinishFailed={onFinishFailed}
+                            // autoComplete="off"
+                            >
+                                <Steps current={current}>
+                                    {steps.map((item) => (
+                                        <Step key={item.title} title={item.title} className="my-4" />
+                                    ))}
+                                </Steps>
+                                <div className="steps-content">{steps[current].content}</div>
+                                <div className="steps-action flex justify-end">
+                                    {current < steps.length - 1 && (
+                                        <Button type="primary" onClick={() => next()} htmlType="submit">
+                                            Next
+                                        </Button>
+                                    )}
+                                    {current === steps.length - 1 && (
+                                        <Button
+                                            type="primary"
+                                            onClick={() => message.success("Processing complete!")}
+                                        >
+                                            Done
+                                        </Button>
+                                    )}
+                                    {current > 0 && (
+                                        <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+                                            Previous
+                                        </Button>
+                                    )}
                                 </div>
-                            </div>
-                            <div className="mb-6">
-                                <h3 for="full-name" className="leading-7 text-sm text-gray-600">Location</h3>
-                                <Autocomplete
-                                    className="border border-gray-200 w-full p-3 rounded-md"
-                                    apiKey={`AIzaSyCN1jgYgkuvHq5hET1b0_UF4BCv7zdub0E`}
-                                    onPlaceSelected={(place) => {
-                                        console.log(place);
-                                    }}
-                                />
-                            </div>
-                            <div className="mb-6">
-                                <h3 for="full-name" className="leading-7 text-sm text-gray-600">Image</h3>
-                                <Dragger {...props}>
-                                    <p className="ant-upload-drag-icon">
-                                        <InboxOutlined />
-                                    </p>
-                                    <p className="ant-upload-text">Upload a file or drag and drop</p>
-                                    <p className="ant-upload-hint">
-                                    PNG, JPG, GIF up to 10MB
-                                    </p>
-                                </Dragger>
-                            </div>
-                            <div className="mt-3 mb-1 flex justify-end items-center">
-                                <button type="button" className="btn-primary">Save & Continue</button>
-                            </div>
+                            </Form>
                         </div>
                     </div>
                 </div>
