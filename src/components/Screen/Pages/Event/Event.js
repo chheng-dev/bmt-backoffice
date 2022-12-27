@@ -6,15 +6,15 @@ import { Link, withRouter } from "react-router-dom"
 import { Popover } from "antd";
 import Loading from "../Loading";
 import { Input, Tooltip } from "antd";
-import { FiInfo } from "react-icons/fi";
+import { FiInfo,FiPlusCircle } from "react-icons/fi";
 import {Select} from "antd";
 
 
 const { RangePicker } = DatePicker
 
-const onBlurSearch = () => {
-    console.log("hello world")
-}
+// const onBlurSearch = () => {
+//     console.log("hello world")
+// }
 
 const contentSearch = (
     <div className="">
@@ -79,10 +79,10 @@ const contentAllEvent = (
                 ]}
             />
         </div>
-        <div className="mt-3 px-3 py-1 bg-gray-200 text-white">
+        <div className="mt-3 px-3 py-1 bg-lightGray text-white">
             <div className="flex">
                 <div className="flex w-1/2 justify-start items-center">
-                    <Link>Reset</Link>
+                    <Link className="text-gray-400">Reset</Link>
                 </div>
                 {/* <div className="flex w-1/2 justify-end items-center">
                     <Link>
@@ -144,8 +144,12 @@ const Event = (props) => {
                         </div>
                         <div className="flex w-1/2 justify-end items-center">
                             <Link to={`${match.path}/create`}>
-                                <Button size={`large`} type="primary">
-                                    Create Event
+                            <Button type="primary" size="large">
+                                    <div className="flex items-center justify-center">
+                                        <Space>
+                                            <FiPlusCircle/> Create Event
+                                        </Space>
+                                    </div>
                                 </Button>
                             </Link>
                         </div>
@@ -175,7 +179,7 @@ const Event = (props) => {
                                     title="Event Image"
                                     key="img"
                                     align="center"
-                                    width={80}
+                                    width={100}
                                     render={(_, record) => (
                                         <img className="w-12 h-12 object-cover" src={record.thumbnail}></img>
                                     )}
@@ -243,7 +247,7 @@ const Event = (props) => {
                                         <>
 
                                             <div className="inline-flex items-center rounded-md">
-                                                <Link to={`${match.path}/${record.id}`}>
+                                                <Link to={`${match.path}/${record.id}/edit`}>
                                                     <button className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                                         <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">
                                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -252,6 +256,7 @@ const Event = (props) => {
                                                     </button>
                                                 </Link>
 
+                                                <Link to={`${match.path}/${record.id}/view`}>
                                                 <button className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border-y border-slate-200 font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">
@@ -260,6 +265,8 @@ const Event = (props) => {
                                                         </svg>
                                                     </span>
                                                 </button>
+                                                </Link>
+
                                                 <button className=" text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">

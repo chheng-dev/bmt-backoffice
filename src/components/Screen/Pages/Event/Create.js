@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Input from "antd/es/input/Input";
-import { DatePicker } from "antd";
-import { TimePicker, Button, Steps, Form } from "antd";
+import { TimePicker, Button, Steps, Form, DatePicker, InputNumber } from "antd";
 import dayjs from 'dayjs';
 import { Space } from "antd";
 import 'draft-js/dist/Draft.css';
@@ -11,6 +10,7 @@ import Dragger from "antd/es/upload/Dragger";
 import { message } from "antd";
 import Autocomplete from "react-google-autocomplete";
 import { withRouter } from "react-router";
+import { FiChevronsLeft, FiChevronsRight, FiSend } from "react-icons/fi";
 
 const CreateEvent = () => {
     const format = 'HH:mm';
@@ -49,7 +49,7 @@ const CreateEvent = () => {
                         name="eventTitle"
                         rules={[{ required: true, message: 'Please input your event title!' }]}
                     >
-                        <Input onChange={(e) => setEventTitle(e.target.value)} />
+                        <Input onChange={(e) => setEventTitle(e.target.value)} placeholder="Enter event title" />
                     </Form.Item>
 
                     <Form.Item
@@ -57,7 +57,7 @@ const CreateEvent = () => {
                         name="organizer"
                         rules={[{ required: true, message: 'Please input organizer!' }]}
                     >
-                        <Input onChange={(e) => setOrganizer(e.target.value)} />
+                        <Input onChange={(e) => setOrganizer(e.target.value)} placeholder="Enter organizer name" />
                     </Form.Item>
 
                     <div className="grid grid-cols-2 gap-4">
@@ -68,7 +68,7 @@ const CreateEvent = () => {
                             labelCol={{ span: 8 }}
 
                         >
-                            <Input onChange={(e) => setOrganizer(e.target``.value)} />
+                            <Input onChange={(e) => setOrganizer(e.target``.value)} placeholder="Select category" />
                         </Form.Item>
 
                         <Form.Item
@@ -78,7 +78,7 @@ const CreateEvent = () => {
                             labelCol={{ span: 8 }}
 
                         >
-                            <Input onChange={(e) => setOrganizer(e.target.value)} className="w-72 ml-2" />
+                            <Input onChange={(e) => setOrganizer(e.target.value)} placeholder="Selecte sub-category" />
                         </Form.Item>
                     </div>
 
@@ -96,46 +96,78 @@ const CreateEvent = () => {
                         />
                     </Form.Item>
 
-                    {/* <div className="grid grid-cols-2 gap-4">
-                        <Form.Item
-                            label="Event Starts"
-                            name="eventStart"
-                            rules={[{ required: true, message: 'Please input event start!' }]}
-                            labelCol={{ span: 8 }}
-                        >
-                            <Input onChange={(e) => setOrganizer(e.target.value)}/>
-                        </Form.Item>
-
-                        <Form.Item
-                            label="Event Ends"
-                            name="eventEnd"
-                            rules={[{ required: true, message: 'Please input event end!' }]}
-                            labelCol={{ span: 8 }}
-                        >
-                            <Input onChange={(e) => setOrganizer(e.target.value)}  />
-                        </Form.Item>
-                    </div> */}
-
                     <div className="grid grid-cols-2 gap-4">
+
                         <Form.Item
                             label="Event Starts"
                             name="eventStart"
-                            rules={[{ required: true, message: 'Please input category!' }]}
-                            labelCol={{ span: 8 }}
-
-                        >
-                            <Input onChange={(e) => setOrganizer(e.target.value)}/>
-                        </Form.Item>
-
-                        <Form.Item
-                            label="Event Ends"
-                            name="eventEnd"
-                            rules={[{ required: true, message: 'Please input sub-category!' }]}
                             labelCol={{ span: 8 }}
                             
                         >
-                            <Input onChange={(e) => setOrganizer(e.target.value)} className="w-72 ml-2" />
+                            <Input.Group compact>
+                                <Form.Item
+                                    name={['datePicker', 'date']}
+                                    noStyle
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Date is required',
+                                        },
+                                    ]}
+                                >
+                                    <DatePicker className="w-7/12" />
+                                </Form.Item>
+                                <Form.Item
+                                    name={['datePicker', 'time']}
+                                    noStyle
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Time is required',
+                                        },
+                                    ]}
+                                >
+                                    <TimePicker className="w-5/12" defaultValue={dayjs('12:08', format)} format={format} />
+                                </Form.Item>
+                            </Input.Group>
                         </Form.Item>
+
+                        <Form.Item
+                            label="Event Ends"
+                            name="eventEnd"
+                            labelCol={{ span: 8 }}
+               
+
+                        >
+                            <Input.Group compact>
+                                <Form.Item
+                                    name={['datePicker', 'date']}
+                                    noStyle
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Date is required',
+                                        },
+                                    ]}
+                                    labelCol={{ span: 8 }}
+                                >
+                                    <DatePicker className="w-7/12" />
+                                </Form.Item>
+                                <Form.Item
+                                    name={['datePicker', 'time']}
+                                    noStyle
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Time is required',
+                                        },
+                                    ]}
+                                >
+                                    <TimePicker defaultValue={dayjs('12:08', format)} format={format} />
+                                </Form.Item>
+                            </Input.Group>
+                        </Form.Item>
+
                     </div>
 
                 </div>
@@ -146,7 +178,24 @@ const CreateEvent = () => {
     function SecondContent() {
         return (
             <>
-                <h1>Step2</h1>
+                <div className="w-full">
+                    <div className="my-3">
+                        <h3 for="full-name" className="leading-7 text-sm text-gray-600">Main Image</h3>
+                        <Dragger {...props}>
+                            <p className="ant-upload-drag-icon">
+                                <InboxOutlined />
+                            </p>
+                            <p className="ant-upload-text">Upload a file or drag and drop</p>
+                            <p className="ant-upload-hint">
+                                PNG, JPG, GIF up to 10MB
+                            </p>
+                        </Dragger>
+                    </div>
+                    <div className="my-3">
+                        <h3 for="full-name" className="leading-7 text-sm text-gray-600">Description</h3>
+                        <JoditEditor />
+                    </div>
+                </div>
             </>
         );
     }
@@ -154,7 +203,111 @@ const CreateEvent = () => {
     function ThirdContent() {
         return (
             <>
-                <h1>Step3</h1>
+                <div className="w-full">
+                    <div className="my-3">
+                        <Form.Item
+                            label="Ticket Name"
+                            name="ticketName"
+                            rules={[{ required: true, message: 'Please input your ticket name!' }]}
+                        >
+                            <Input onChange={(e) => setEventTitle(e.target.value)} placeholder="Enter event ticket name" />
+                        </Form.Item>
+                        <div className="grid grid-cols-2 gap-4">
+                            <Form.Item
+                                label="Ticket Qty"
+                                name="qty"
+                                rules={[{ required: true, message: 'Please input ticket qty!' }]}
+                                labelCol={{ span: 8 }}
+
+                            >
+                                <Input type={'number'} placeholder="Enter ticket qty" className="mx-1 w-full" />
+                            </Form.Item>
+
+                            <Form.Item
+                                label="Ticket Price"
+                                name="price"
+                                rules={[{ required: true, message: 'Please input ticket price!' }]}
+                                labelCol={{ span: 8 }}
+
+                            >
+                                <InputNumber type={'number'} className="mx-1 w-full" addonAfter="$" defaultValue={0} />
+                            </Form.Item>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+
+                            <Form.Item
+                                label="Event Starts"
+                                name="eventStart"
+                                labelCol={{ span: 8 }}
+                                
+                            >
+                                <Input.Group compact>
+                                    <Form.Item
+                                        name={['datePicker', 'date']}
+                                        noStyle
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Date is required',
+                                            },
+                                        ]}
+                                    >
+                                        <DatePicker className="w-7/12" />
+                                    </Form.Item>
+                                    <Form.Item
+                                        name={['datePicker', 'time']}
+                                        noStyle
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Time is required',
+                                            },
+                                        ]}
+                                    >
+                                        <TimePicker className="w-5/12" defaultValue={dayjs('12:08', format)} format={format} />
+                                    </Form.Item>
+                                </Input.Group>
+                            </Form.Item>
+
+                            <Form.Item
+                                label="Event Ends"
+                                name="eventEnd"
+                                labelCol={{ span: 8 }}
+                   
+
+                            >
+                                <Input.Group compact>
+                                    <Form.Item
+                                        name={['datePicker', 'date']}
+                                        noStyle
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Date is required',
+                                            },
+                                        ]}
+                                        labelCol={{ span: 8 }}
+                                    >
+                                        <DatePicker className="w-7/12" />
+                                    </Form.Item>
+                                    <Form.Item
+                                        name={['datePicker', 'time']}
+                                        noStyle
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Time is required',
+                                            },
+                                        ]}
+                                    >
+                                        <TimePicker defaultValue={dayjs('12:08', format)} format={format} />
+                                    </Form.Item>
+                                </Input.Group>
+                            </Form.Item>
+
+                        </div>
+                    </div>
+                </div>
             </>
         );
     }
@@ -165,11 +318,11 @@ const CreateEvent = () => {
             content: <FirstContent />
         },
         {
-            title: "Second",
+            title: "Description",
             content: <SecondContent />
         },
         {
-            title: "Last",
+            title: "Ticket",
             content: <ThirdContent />
         }
     ];
@@ -177,10 +330,10 @@ const CreateEvent = () => {
     const [current, setCurrent] = useState(0);
 
     const next = () => {
-        if (eventTitle) {
-            // alert("helloworld");
-            setCurrent(current + 1);
-        }
+        // if (eventTitle && organizer) {
+        // alert("helloworld");
+        setCurrent(current + 1);
+        // }
     };
 
     const prev = () => {
@@ -213,10 +366,23 @@ const CreateEvent = () => {
                                     ))}
                                 </Steps>
                                 <div className="steps-content">{steps[current].content}</div>
-                                <div className="steps-action flex justify-end">
+                                <div className="steps-action flex justify-end mb-3 mt-8">
+                                    {current > 0 && (
+                                        <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+                                            <div className="flex">
+                                                <Space>
+                                                    <FiChevronsLeft /> Cancel
+                                                </Space>
+                                            </div>
+                                        </Button>
+                                    )}
                                     {current < steps.length - 1 && (
                                         <Button type="primary" onClick={() => next()} htmlType="submit">
-                                            Next
+                                            <div className="flex">
+                                                <Space>
+                                                    Next <FiChevronsRight />
+                                                </Space>
+                                            </div>
                                         </Button>
                                     )}
                                     {current === steps.length - 1 && (
@@ -224,12 +390,11 @@ const CreateEvent = () => {
                                             type="primary"
                                             onClick={() => message.success("Processing complete!")}
                                         >
-                                            Done
-                                        </Button>
-                                    )}
-                                    {current > 0 && (
-                                        <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
-                                            Previous
+                                            <div className="flex">
+                                                <Space>
+                                                    <FiSend /> Public
+                                                </Space>
+                                            </div>
                                         </Button>
                                     )}
                                 </div>

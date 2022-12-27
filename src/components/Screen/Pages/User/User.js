@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Breadcrumb } from "antd";
-import { FiHome, FiInfo } from "react-icons/fi";
+import { FiHome, FiInfo,FiPlusCircle } from "react-icons/fi";
 import { Space, Input, Button, Tooltip, Table } from "antd";
 import Column from "antd/es/table/Column";
 import { Link, withRouter } from "react-router-dom";
@@ -51,9 +51,13 @@ const User = (props) => {
                         </div>
                         <div className="flex w-1/2 justify-end items-center">
                             <Link to={`${match.path}/create`}>
-                                <button type="button" className="btn-primary">
-                                    Create Users
-                                </button>
+                                <Button type="primary" size="large">
+                                    <div className="flex items-center justify-center">
+                                        <Space>
+                                            <FiPlusCircle/> Create Users
+                                        </Space>
+                                    </div>
+                                </Button>
 
                             </Link>
                         </div>

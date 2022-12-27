@@ -8,11 +8,12 @@ import EditCategory from "./Screen/Pages/Category/Edit";
 import Event from "./Screen/Pages/Event/Event";
 import EditEvent from "./Screen/Pages/Event/Edit";
 import CreateEvent from "./Screen/Pages/Event/Create";
+import {ViewEvent} from "./Screen/Pages/Event/View";
 import Order from "./Screen/Pages/Order/index";
 import { CheckIn } from "./Screen/Pages/Checkin";
-import User  from "./Screen/Pages/User/User";
-import {CreateUser} from "./Screen/Pages/User/Create";
-import EditUser  from "./Screen/Pages/User/Edit";
+import User from "./Screen/Pages/User/User";
+import { CreateUser } from "./Screen/Pages/User/Create";
+import EditUser from "./Screen/Pages/User/Edit";
 import NotFound from ".//Screen/Pages/404/index";
 import { Test } from "../Test";
 
@@ -50,7 +51,7 @@ class Dashboard extends React.Component {
                             <Route path={`${match.path}/category/create`}>
                                 <CreateCategory />
                             </Route>
-                            <Route path={`${match.path}/category/:id`}>
+                            <Route path={`${match.path}/category/:id/edit`}>
                                 <EditCategory />
                             </Route>
 
@@ -66,8 +67,11 @@ class Dashboard extends React.Component {
                             <Route path={`${match.path}/event/create`}>
                                 <CreateEvent />
                             </Route>
-                            <Route path={`${match.path}/event/:id`}>
+                            <Route path={`${match.path}/event/${':id'}/edit`}>
                                 <EditEvent />
+                            </Route>
+                            <Route path={`${match.path}/event/:id/view`}>
+                                <ViewEvent />
                             </Route>
 
                             {/* Order Pages */}
@@ -77,22 +81,22 @@ class Dashboard extends React.Component {
 
                             {/* CheckIn */}
                             <Route exact path={`${match.path}/checkIn`}>
-                                <CheckIn/>
+                                <CheckIn />
                             </Route>
 
                             {/* Users List */}
                             <Route exact path={`${match.path}/users`}>
-                                <User/>
+                                <User />
                             </Route>
                             <Route path={`${match.path}/users/create`}>
-                                <CreateUser/>
+                                <CreateUser />
                             </Route>
                             <Route path={`${match.path}/users/:id`}>
-                                <EditUser/>
+                                <EditUser />
                             </Route>
 
                             {/* Not found Route */}
-                            
+
                             <Route path="*">
                                 <NotFound />
                             </Route>

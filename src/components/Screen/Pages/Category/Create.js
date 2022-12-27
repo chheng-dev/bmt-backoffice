@@ -1,9 +1,9 @@
 import React, { useState, Fragment } from "react";
 import Input from "antd/es/input/Input";
-import { Form,Button } from "antd";
+import { Form, Button, Space,Select } from "antd";
 import axios from "axios"
 import Loading from "../Loading";
-
+import { FiSave } from "react-icons/fi";
 const CreateCategory = () => {
     const [loading, setLoading] = useState(false)
     const [category, setCategoryName] = useState('');
@@ -25,6 +25,13 @@ const CreateCategory = () => {
         }
 
     }
+    const options = [];
+    for (let i = 10; i < 36; i++) {
+        options.push({
+            value: i.toString(36) + i,
+            label: i.toString(36) + i,
+        });
+    }
 
     if (loading) {
         return <Loading />
@@ -44,11 +51,11 @@ const CreateCategory = () => {
                             <Form
                                 name="Category"
                                 labelCol={{
-                                    span: 8,
+                                    span: 4,
                                 }}
-                                wrapperCol={{
-                                    span: 16,
-                                }}
+                                // wrapperCol={{
+                                //     span: 16,
+                                // }}
                                 initialValues={{
                                     remember: true,
                                 }}
@@ -71,6 +78,25 @@ const CreateCategory = () => {
                                 </div>
                                 <div>
                                     <Form.Item
+                                        label="Sub-category"
+                                        name="sub-category"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please input your sub-category!',
+                                            },
+                                        ]}
+                                    >
+                                        <Select
+                                            size={'large'}
+                                            defaultValue="Music"
+                                            // onChange={handleChange}
+                                            options={options}
+                                        />
+                                    </Form.Item>
+                                </div>
+                                <div>
+                                    <Form.Item
                                         label="Slug"
                                         name="slug"
                                         rules={[
@@ -84,7 +110,14 @@ const CreateCategory = () => {
                                     </Form.Item>
                                 </div>
                                 <div className="mt-3 mb-1 flex justify-end items-center">
-                                    <Button type="primary" htmlType="submit">Save & Continue</Button>
+                                    <Button type="primary" htmlType="submit">
+                                        <div className="flex">
+                                            <Space>
+                                                <FiSave /> Save & Continue
+                                            </Space>
+                                        </div>
+                                    </Button>
+
                                 </div>
                             </Form>
                         </div>

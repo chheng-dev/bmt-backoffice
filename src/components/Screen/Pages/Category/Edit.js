@@ -8,7 +8,7 @@ import axios from "axios";
 
 const EditCategory = () => {
 
-    const params = useParams();
+    const paramId = useParams();
     const [category, setCategory] = useState("");
     const [slug, setSlugName] = useState('');
     const [loading, setLoading] = useState(false)
@@ -16,7 +16,7 @@ const EditCategory = () => {
     const getCategoryById = async () => {
         try {
             setLoading(true)
-            const respone = await fetch(`https://api.escuelajs.co/api/v1/categories/${params.id}`);
+            const respone = await fetch(`https://api.escuelajs.co/api/v1/categories/${paramId.id}`);
             const data = await respone.json();
             setCategory(data)
             setLoading(false)
@@ -29,7 +29,7 @@ const EditCategory = () => {
     const handleEdit = async () => {
         try {
             setLoading(true)
-            await axios.put(`https://api.escuelajs.co/api/v1/categories/${params.id}`, {
+            await axios.put(`https://api.escuelajs.co/api/v1/categories/${paramId}`, {
                 name: category,
                 image: "https://media.istockphoto.com/id/597940046/photo/casual-catering-discussion-meeting-colleagues-concept.jpg?s=612x612&w=0&k=20&c=xRC_Vtd_LZ2HsvIyMkmhqAgVeQGV0vX5j-Nj90vPCHQ="
             }).then(() => {

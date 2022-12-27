@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Breadcrumb, Checkbox, Switch,Input,Space} from "antd";
+import { Breadcrumb, Checkbox, Switch, Input, Space, Button } from "antd";
 import Column from "antd/es/table/Column";
 import { Link, useParams, withRouter } from "react-router-dom";
 import Loading from "../Loading";
-import { FiHome, FiInfo } from "react-icons/fi";
+import { FiHome, FiInfo,FiSave } from "react-icons/fi";
 
 const EditUser = (props) => {
     const params = useParams();
-    const [loading,setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const getSingleUser = async () => {
         try {
             setLoading(true);
@@ -21,9 +21,9 @@ const EditUser = (props) => {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getSingleUser();
-    },[]);
+    }, []);
 
 
     if (loading) {
@@ -347,7 +347,13 @@ const EditUser = (props) => {
                                 <div className="flex py-3">
                                     <div className="flex w-1/2 justify-start items-center"></div>
                                     <div className="flex w-1/2 justify-end items-center">
-                                        <button type="button" className="btn-primary">Update & Continue</button>
+                                        <Button type="primary">
+                                            <div className="flex">
+                                                <Space>
+                                                    <FiSave /> Update & Continue
+                                                </Space>
+                                            </div>
+                                        </Button>
                                     </div>
                                 </div>
                             </div>

@@ -11,30 +11,50 @@ import dayjs from 'dayjs';
 const data = [
     {
         key: '1',
-        idx: 1,
-        name: 'John Brown',
+        orderId: "#0012451",
+        eventName: 'The Story Of Danaou Taba (Musical Drama)',
+        customerName:"Bella Simatupang",
         qty: 32,
+        location:"London, US	",
+        soldTicket:"1 pcs",
+        date:"04/08/2020 12:34 AM",
+        refund:"Yes"
 
     },
     {
         key: '2',
-        idx: 2,
-        name: 'Jim Green',
+        orderId: "#0012452",
+        eventName: 'The Story Of Danaou Taba (Musical Drama)',
+        customerName:"Bella Simatupang",
         qty: 42,
+        location:"London, US	",
+        soldTicket:"1 pcs",
+        refund:"Yes",
+        date:"04/08/2020 12:34 AM"
 
     },
     {
         key: '3',
-        idx: 3,
-        name: 'Joe Black',
+        orderId: '#0012451',
+        eventName: 'The Story Of Danaou Taba (Musical Drama)',
         qty: 32,
+        customerName:"Bella Simatupang",
         eventType: 'Football',
+        location:"Jakarta, Indonesia	",
+        soldTicket:"1 pcs",
+        refund:"Yes",
+        date:"04/08/2020 12:34 AM"
     },
     {
         key: '4',
-        idx: 4,
-        name: 'Jim Red',
+        orderId:"#0012451",
+        eventName: 'The Story Of Danaou Taba (Musical Drama)',
         qty: 32,
+        customerName:"Bella Simatupang",
+        location:"Medan, Indonesia",
+        soldTicket:"1 pcs",
+        refund:"Yes",
+        date:"04/08/2020 12:34 AM"
 
     },
 ];
@@ -213,68 +233,62 @@ const Order = (props) => {
                 </div>
                 <Table bordered size={"small"} dataSource={data}>
                     <Column
-                        title="Id"
-                        key="idx"
-                        dataIndex={'idx'}
-                        align="center"
+                        title="Order ID"
+                        key="orderId"
+                        dataIndex={'orderId'}
+                       
                         width={80}
                     />
                     <Column
-                        title="Event name"
-                        key="event"
-                        dataIndex={'name'}
+                        title="Date"
+                        key="date"
+                        dataIndex={'date'}
+                        width={100}
                     />
                     <Column
-                        title="Quantity"
-                        key="status"
-                        width={120}
-                        align="center"
-                        dataIndex={'qty'}
+                        title="Customer Name"
+                        key="customerName"
+                        dataIndex="customerName"
+                        width={90}
+                  
                     />
                     <Column
-                        title="Price"
-                        key="price"
+                        title="Location"
+                        key="location"
                         width={120}
-                        align="center"
-                        render={(_, record) => (
-                            <span className="font-bold text-red-700">
-                                $10.00
-                            </span>
-                        )}
+                        dataIndex="location"
+                        // align="center"
+                        // render={(_, record) => (
+                        //     <span className="font-bold text-red-700">
+                        //         $10.00
+                        //     </span>
+                        // )}
                     />
                     <Column
-                        title="Action"
-                        key="action"
-                        width={120}
-                        render={(_, record) => (
-                            <div className="inline-flex items-center rounded-md">
-                                {/* <Link to={`${match.path}/${record.id}`}> */}
-                                <button className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                    <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                    </svg>
-                                    </span>
-                                </button>
-                                {/* </Link> */}
+                        title="Sold Ticket	"
+                        key="soldTicket"
+                        dataIndex={"soldTicket"}
+                        width={60}
+                        // align="center"
+                        // render={(_, record) => (
+                        //     <span className="font-bold text-red-700">
+                        //         $10.00
+                        //     </span>
+                        // )}
+                    />
+                    <Column
+                        title="Refund"
+                        key="refund"
+                        dataIndex={"refund"}
+                        width={40}
+                        // align="center"
+                        // render={(_, record) => (
+                        //     <span className="font-bold text-red-700">
+                        //         Yes
+                        //     </span>
+                        // )}
+                    />
 
-                                <button className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border-y border-slate-200 font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </span>
-                                </button>
-                                <button className=" text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                        </svg>
-                                    </span>
-                                </button>
-                            </div>
-                        )}
-                    />
                 </Table>
             </div>
         </div>
