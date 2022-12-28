@@ -95,3 +95,8 @@ div {
 .ant-steps-item-content>.ant-steps-item-title::after {
   background-color: #2EBAE2;
 }
+
+.ant-menu-inline-collapsed >.ant-menu-submenu>.ant-menu-submenu-title{
+  display: flex;
+  align-items: center;
+}

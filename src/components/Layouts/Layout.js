@@ -100,10 +100,10 @@ class LayoutContent extends React.Component {
 
 
                         <div className="w-full bg-white p-4 mb-4 shadow-lg">
-                            <div className='flex'>
-                                <div className='flex w-1/2 justify-start items-center'>
+                            <div className='md:flex'>
+                                <div className='md:flex md:w-1/2 justify-start items-center'>
                                     <Input
-                                        className='w-2/3 p-2'
+                                        className='md:w-2/3 p-2'
                                         placeholder="Search"
                                         prefix={<FiSearch className="site-form-item-icon text-xl text-gray-400" />}
                                         suffix={
@@ -118,7 +118,7 @@ class LayoutContent extends React.Component {
                                         }
                                     />
                                 </div>
-                                <div className='flex w-1/2 justify-end items-center cursor-pointer'>
+                                <div className='md:flex md:w-1/2 justify-end items-center cursor-pointer hidden'>
                                     <Space size={'middle'}>
                                         <Link>
                                             <FiBell className='text-xl'/>

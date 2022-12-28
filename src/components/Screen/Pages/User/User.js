@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Breadcrumb, Modal, Checkbox, Switch } from "antd";
-import { FiHome, FiInfo, FiPlusCircle,FiSave } from "react-icons/fi";
+import { FiHome, FiInfo, FiPlus,FiSave } from "react-icons/fi";
 import { Space, Input, Button, Tooltip, Table } from "antd";
 import Column from "antd/es/table/Column";
 import { Link, withRouter } from "react-router-dom";
@@ -52,16 +52,28 @@ const User = (props) => {
                     </Breadcrumb>
                     <div className="my-4 flex bg-white p-4 ">
                         <div className="flex w-1/2 justify-start items-center">
-                            <h2 className="text-xl font-bold">
+                            <h2 className="md:text-xl font-bold">
                                 Users List
                             </h2>
                         </div>
-                        <div className="flex w-1/2 justify-end items-center">
+                        <div className="md:flex w-1/2 justify-end items-center hidden">
                             {/* <Link to={`${match.path}/create`}> */}
                             <Button onClick={handleAddModal} type="primary" size="large">
                                 <div className="flex items-center justify-center">
                                     <Space>
-                                        <FiPlusCircle /> Create Users
+                                        <FiPlus className="text-xl"/> Create Users
+                                    </Space>
+                                </div>
+                            </Button>
+
+                            {/* </Link> */}
+                        </div>
+                        <div className="flex w-1/2 justify-end items-center md:hidden">
+                            {/* <Link to={`${match.path}/create`}> */}
+                            <Button onClick={handleAddModal} type="primary" size="small">
+                                <div className="flex items-center justify-center">
+                                    <Space>
+                                        <FiPlus className=""/>
                                     </Space>
                                 </div>
                             </Button>
@@ -83,7 +95,7 @@ const User = (props) => {
                                 </Input.Group>
                             </Space>
                         </div>
-                        <Table className="shadow-sm rounded-lg" bordered size={"small"} dataSource={users} pagination={6}>
+                        <Table className="shadow-sm rounded-lg" bordered size={"small"} dataSource={users} pagination={6} scroll={{x:800}}>
                             <Column
                                 title="Id"
                                 key="1"
@@ -173,7 +185,7 @@ const User = (props) => {
             <Modal
                 open={isOpenAddModal}
                 onCancel={handleCancelAddModal}
-                width={'50%'}
+                width={'100%'}
                 style={{
                     top: 20,
                 }}
@@ -181,14 +193,14 @@ const User = (props) => {
                     <>
                         <Button key="back" onClick={handleCancelAddModal}>
                             Cancel
-                        </Button>,
+                        </Button>
                         <Button type="primary" htmlType="submit">
                             <div className="flex">
                                 <Space>
                                     <FiSave /> Save & Continue
                                 </Space>
                             </div>
-                        </Button>,
+                        </Button>
                     </>
                 }
             >
@@ -240,7 +252,7 @@ const User = (props) => {
                         <span className="">Role </span>
                         <div className="w-full mb-3 mt-5 bg-lightGray p-4">
                             <div className="flex gap-4">
-                                <Space size={'large'}>
+                                <Space>
                                     <Checkbox></Checkbox>
                                     <span className="text-sm">Super Admin</span>
                                 </Space>
@@ -259,13 +271,13 @@ const User = (props) => {
                     <div>
                         <span>Permissions</span>
                         <div className="w-full mb-3 mt-5 bg-lightGray p-4">
-                            <div className="md:flex md:gap-4">
-                                <div className="flex md:w-1/2 justify-start items-center">
+                            <div className="flex gap-4">
+                                <div className="flex w-1/2 justify-start items-center">
                                     <span className="text-sm">1. View Dashboard</span>
                                 </div>
-                                <div className="flex md:w-1/2 justify-end items-center">
+                                <div className="flex w-1/2 justify-end items-center">
                                     <Space>
-                                        <Switch size="small" defaultChecked className="ml-2" />
+                                        <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                     </Space>
                                 </div>
                             </div>
@@ -273,28 +285,28 @@ const User = (props) => {
                         <div className="w-full mb-3 mt-5 bg-lightGray p-4">
                             <div className="md:flex md:gap-4">
 
-                                <div className="flex md:w-1/2 justify-start items-center">
+                                <div className="flex md:w-1/2 justify-start items-center mb-2 md:mb-0">
                                     <span className="text-sm">2. View Category</span>
                                 </div>
                                 <div className="text-sm flex md:w-1/2 justify-end items-center">
                                     <Space size={'large'}>
                                         <span>
                                             Add
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
                                             View
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Edit
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Delete
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                     </Space>
 
@@ -304,28 +316,28 @@ const User = (props) => {
                         <div className="w-full mb-3 mt-5 bg-lightGray p-4">
                             <div className="md:flex md:gap-4">
 
-                                <div className="flex md:w-1/2 justify-start items-center">
+                                <div className="flex md:w-1/2 justify-start items-center mb-2 md:mb-0">
                                     <span className="text-sm">3. View Event</span>
                                 </div>
                                 <div className="text-sm flex md:w-1/2 justify-end items-center">
                                     <Space size={'large'}>
                                         <span>
                                             Add
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
                                             View
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Edit
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Delete
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                     </Space>
 
@@ -335,28 +347,28 @@ const User = (props) => {
                         <div className="w-full mb-3 mt-5 bg-lightGray p-4">
                             <div className="md:flex md:gap-4">
 
-                                <div className="flex md:w-1/2 justify-start items-center">
+                                <div className="flex md:w-1/2 justify-start items-center mb-2 md:mb-0">
                                     <span className="text-sm">4. View Order</span>
                                 </div>
                                 <div className="text-sm flex md:w-1/2 justify-end items-center">
                                     <Space size={'large'}>
                                         <span>
                                             Add
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
                                             View
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Edit
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Delete
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                     </Space>
 
@@ -366,28 +378,28 @@ const User = (props) => {
                         <div className="w-full mb-3 mt-5 bg-lightGray p-4">
                             <div className="md:flex md:gap-4">
 
-                                <div className="flex md:w-1/2 justify-start items-center">
+                                <div className="flex md:w-1/2 justify-start items-center mb-2 md:mb-0">
                                     <span className="text-sm">5. View Check In</span>
                                 </div>
                                 <div className="text-sm flex md:w-1/2 justify-end items-center">
                                     <Space size={'large'}>
                                         <span>
                                             Add
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
                                             View
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Edit
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Delete
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                     </Space>
 
@@ -397,28 +409,28 @@ const User = (props) => {
                         <div className="w-full mb-3 mt-5 bg-lightGray p-4">
                             <div className="md:flex md:gap-4">
 
-                                <div className="flex md:w-1/2 justify-start items-center">
+                                <div className="flex md:w-1/2 justify-start items-center mb-2 md:mb-0">
                                     <span className="text-sm">6. View Report</span>
                                 </div>
                                 <div className="text-sm flex md:w-1/2 justify-end items-center">
                                     <Space size={'large'}>
                                         <span>
                                             Add
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
                                             View
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Edit
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Delete
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                     </Space>
 
@@ -428,28 +440,28 @@ const User = (props) => {
                         <div className="w-full mb-3 mt-5 bg-lightGray p-4">
                             <div className="md:flex md:gap-4">
 
-                                <div className="flex md:w-1/2 justify-start items-center">
+                                <div className="flex md:w-1/2 justify-start items-center mb-2 md:mb-0">
                                     <span className="text-sm">7. View User</span>
                                 </div>
                                 <div className="text-sm flex md:w-1/2 justify-end items-center">
                                     <Space size={'large'}>
                                         <span>
                                             Add
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
                                             View
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Edit
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Delete
-                                            <Switch size="small" defaultChecked={false} className="ml-2" />
+                                            <Switch size="small" defaultChecked={false} className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                     </Space>
 
@@ -459,28 +471,28 @@ const User = (props) => {
                         <div className="w-full mb-3 mt-5 bg-lightGray p-4">
                             <div className="md:flex md:gap-4">
 
-                                <div className="flex md:w-1/2 justify-start items-center">
+                                <div className="flex md:w-1/2 justify-start items-center mb-2 md:mb-0">
                                     <span className="text-sm">8. View Setting</span>
                                 </div>
                                 <div className="text-sm flex md:w-1/2 justify-end items-center">
                                     <Space size={'large'}>
                                         <span>
                                             Add
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
                                             View
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Edit
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                         <span>
 
                                             Delete
-                                            <Switch size="small" defaultChecked className="ml-2" />
+                                            <Switch size="small" defaultChecked className="ml-2 mt-2 md:mt-0" />
                                         </span>
                                     </Space>
 

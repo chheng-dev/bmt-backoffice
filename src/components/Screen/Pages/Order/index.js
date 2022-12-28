@@ -239,7 +239,7 @@ const Order = (props) => {
                         </Popover>
                     </Space>
                 </div>
-                <Table bordered size={"small"} dataSource={data}>
+                <Table bordered size={"small"} dataSource={data} scroll={{ x: 800 }}>
                     <Column
                         title="Order ID"
                         key="orderId"

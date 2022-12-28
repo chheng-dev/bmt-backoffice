@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Button, Space, Table, Modal, Form, Steps,TimePicker,message,InputNumber } from 'antd';
+import { Button, Space, Table, Modal, Form, Steps, TimePicker, message, InputNumber } from 'antd';
 import { DatePicker } from "antd";
 import Column from "antd/es/table/Column";
 import { Link, withRouter } from "react-router-dom"
 import { Popover } from "antd";
 import Loading from "../Loading";
 import { Input, Tooltip } from "antd";
-import { FiInfo, FiPlusCircle, FiSave, FiChevronsLeft, FiChevronsRight, FiSend } from "react-icons/fi";
+import { FiInfo, FiPlus, FiSave, FiChevronsLeft, FiChevronsRight, FiSend } from "react-icons/fi";
 import { Select } from "antd";
 import Autocomplete from "react-google-autocomplete";
 import dayjs from 'dayjs';
@@ -196,7 +196,7 @@ const Event = (props) => {
                             label="Category"
                             name="category"
                             rules={[{ required: true, message: 'Please input category!' }]}
-                            labelCol={{ span: 8 }}
+
 
                         >
                             <Input onChange={(e) => setOrganizer(e.target``.value)} placeholder="Select category" />
@@ -206,7 +206,7 @@ const Event = (props) => {
                             label="Sub-Category"
                             name="subCategory"
                             rules={[{ required: true, message: 'Please input sub-category!' }]}
-                            labelCol={{ span: 8 }}
+
 
                         >
                             <Input onChange={(e) => setOrganizer(e.target.value)} placeholder="Selecte sub-category" />
@@ -227,12 +227,12 @@ const Event = (props) => {
                         />
                     </Form.Item>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="md:grid md:grid-cols-2 gap-4">
 
                         <Form.Item
                             label="Event Starts"
                             name="eventStart"
-                            labelCol={{ span: 8 }}
+
 
                         >
                             <Input.Group compact>
@@ -266,9 +266,6 @@ const Event = (props) => {
                         <Form.Item
                             label="Event Ends"
                             name="eventEnd"
-                            labelCol={{ span: 8 }}
-
-
                         >
                             <Input.Group compact>
                                 <Form.Item
@@ -280,7 +277,7 @@ const Event = (props) => {
                                             message: 'Date is required',
                                         },
                                     ]}
-                                    // labelCol={{ span: 8 }}
+
                                 >
                                     <DatePicker className="w-7/12" />
                                 </Form.Item>
@@ -348,7 +345,6 @@ const Event = (props) => {
                                 label="Ticket Qty"
                                 name="qty"
                                 rules={[{ required: true, message: 'Please input ticket qty!' }]}
-                                labelCol={{ span: 8 }}
 
                             >
                                 <Input type={'number'} placeholder="Enter ticket qty" className="mx-1 w-full" />
@@ -358,7 +354,6 @@ const Event = (props) => {
                                 label="Ticket Price"
                                 name="price"
                                 rules={[{ required: true, message: 'Please input ticket price!' }]}
-                                labelCol={{ span: 8 }}
 
                             >
                                 <InputNumber type={'number'} className="mx-1 w-full" addonAfter="$" defaultValue={0} />
@@ -369,7 +364,6 @@ const Event = (props) => {
                             <Form.Item
                                 label="Event Starts"
                                 name="eventStart"
-                                labelCol={{ span: 8 }}
 
                             >
                                 <Input.Group compact>
@@ -401,40 +395,40 @@ const Event = (props) => {
                             </Form.Item>
 
                             <Form.Item
-                            label="Event Ends"
-                            name="eventEnd"
-                            labelCol={{ span: 8 }}
+                                label="Event Ends"
+                                name="eventEnd"
 
 
-                        >
-                            <Input.Group compact>
-                                <Form.Item
-                                    name={['datePicker', 'date']}
-                                    noStyle
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Date is required',
-                                        },
-                                    ]}
-                                    // labelCol={{ span: 8 }}
-                                >
-                                    <DatePicker className="w-7/12" />
-                                </Form.Item>
-                                <Form.Item
-                                    name={['datePicker', 'time']}
-                                    noStyle
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Time is required',
-                                        },
-                                    ]}
-                                >
-                                    <TimePicker className="w-5/12" defaultValue={dayjs('12:08', format)} format={format} />
-                                </Form.Item>
-                            </Input.Group>
-                        </Form.Item>
+
+                            >
+                                <Input.Group compact>
+                                    <Form.Item
+                                        name={['datePicker', 'date']}
+                                        noStyle
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Date is required',
+                                            },
+                                        ]}
+
+                                    >
+                                        <DatePicker className="w-7/12" />
+                                    </Form.Item>
+                                    <Form.Item
+                                        name={['datePicker', 'time']}
+                                        noStyle
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Time is required',
+                                            },
+                                        ]}
+                                    >
+                                        <TimePicker className="w-5/12" defaultValue={dayjs('12:08', format)} format={format} />
+                                    </Form.Item>
+                                </Input.Group>
+                            </Form.Item>
 
                         </div>
                     </div>
@@ -461,14 +455,25 @@ const Event = (props) => {
                 <div className="w-full">
                     <div className="my-4 flex bg-white p-4 ">
                         <div className="flex w-1/2 justify-start items-center">
-                            <h2 className="text-xl font-bold">Event Lists</h2>
+                            <h2 className="text-sm md:text-xl font-bold">Event Lists</h2>
                         </div>
-                        <div className="flex w-1/2 justify-end items-center">
+                        <div className="md:flex w-1/2 justify-end items-center hidden">
                             {/* <Link to={`${match.path}/create`}> */}
                             <Button type="primary" size="large" onClick={isOpenAddModal}>
                                 <div className="flex items-center justify-center">
                                     <Space>
-                                        <FiPlusCircle /> Create Event
+                                        <FiPlus className="text-xl" /> Create Event
+                                    </Space>
+                                </div>
+                            </Button>
+                            {/* </Link> */}
+                        </div>
+                        <div className="flex w-1/2 justify-end items-center  md:hidden">
+                            {/* <Link to={`${match.path}/create`}> */}
+                            <Button type="primary" size="small" onClick={isOpenAddModal}>
+                                <div className="flex items-center justify-center">
+                                    <Space>
+                                        <FiPlus />
                                     </Space>
                                 </div>
                             </Button>
@@ -488,7 +493,7 @@ const Event = (props) => {
                                     <RangePicker />
                                 </Space>
                             </div>
-                            <Table bordered size={"small"} dataSource={eventList} onChange={onChange}>
+                            <Table bordered size={"small"} dataSource={eventList} onChange={onChange} scroll={{ x: 800 }}>
                                 <Column
                                     title="Id"
                                     key="idx"
@@ -569,12 +574,12 @@ const Event = (props) => {
 
                                             <div className="inline-flex items-center rounded-md">
                                                 {/* <Link to={`${match.path}/${record.id}/edit`}> */}
-                                                    <button onClick={isOpenUpdateModal} className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                                        <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                                        </svg>
-                                                        </span>
-                                                    </button>
+                                                <button onClick={isOpenUpdateModal} className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
+                                                    <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                    </svg>
+                                                    </span>
+                                                </button>
                                                 {/* </Link> */}
 
                                                 <Link to={`${match.path}/${record.id}/view`}>
@@ -610,15 +615,18 @@ const Event = (props) => {
             <Modal
                 title="Add Event"
                 open={isAddModalOpen}
-                width={'50%'}
+                // width={'50%'}
+                className="w-ful"
                 footer={null}
                 onCancel={handleCancelAddModal}
-                >
+                style={{
+                    top: 20,
+                }}
+            >
                 <div>
                     <Form
                         name="basic"
-                        labelCol={{ span: 4 }}
-                        wrapperCol={{ span: 32 }}
+                        layout="vertical"
                         initialValues={{ remember: true }}
                     >
                         <Steps current={current}>
@@ -667,15 +675,18 @@ const Event = (props) => {
             <Modal
                 title="Update Event"
                 open={isUpdateModalOpen}
-                width={'50%'}
+                // width={'50%'}
                 footer={null}
                 onCancel={handleCancelUpdateModal}
-                >
+                className="md:w-1/2 sm:w-full"
+                style={{
+                    top: 20,
+                  }}
+            >
                 <div>
                     <Form
                         name="basic"
-                        labelCol={{ span: 4 }}
-                        wrapperCol={{ span: 32 }}
+                        layout="vertical"
                         initialValues={{ remember: true }}
                     >
                         <Steps current={current}>

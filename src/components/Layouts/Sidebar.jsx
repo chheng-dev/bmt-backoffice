@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { FiShoppingCart, FiHome, FiGrid, FiFolderMinus, FiSettings, FiCalendar,FiUser,FiUsers,FiShoppingBag,FiLogOut } from "react-icons/fi";
 import logo from "../assets/img/icon-logo.png"
 const Sidebar = () => {
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
 
     const [current, setCurrent] = useState('1');
 
@@ -16,7 +16,7 @@ const Sidebar = () => {
 
     return (
         <>
-            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="bg-white">
+            <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="bg-white">
                 <div
                     className="px-2 flex items-center justify-center"
                     style={{
