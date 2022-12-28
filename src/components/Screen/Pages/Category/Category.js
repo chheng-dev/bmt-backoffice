@@ -1,23 +1,32 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Table, Button } from 'antd';
+import { Table, Button, Modal, Form, Input, Select, Space } from 'antd';
 import { Switch, Route, Link, withRouter } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { Space } from "antd";
 import Column from "antd/es/table/Column";
 import Loading from "../Loading";
 import axios from "axios";
-import { FiPlusCircle } from "react-icons/fi";
+import { FiPlusCircle, FiSave } from "react-icons/fi";
 
 const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
 };
 
 
+const options = [];
+for (let i = 10; i < 36; i++) {
+    options.push({
+        value: i.toString(36) + i,
+        label: i.toString(36) + i,
+    });
+}
 
 const Category = (props) => {
 
     const [category, setCategory] = useState([]);
     const [loading, setLoading] = useState(false)
+    const [openModalCategory, setOpenModal] = useState(false);
+     const [openModalUpdate, setUpdateModal] = useState(false);
+    const [cat, setCategoryName] = useState('');
     const loadCateogry = async () => {
         try {
             setLoading(true)
@@ -43,6 +52,22 @@ const Category = (props) => {
 
     }
 
+    const onClickShowModal = () => {
+        setOpenModal(true);
+    }
+
+    const handleCancelModalCategory = () => {
+        setOpenModal(false);
+    }
+
+    const updateModalCategory = () =>{
+        setUpdateModal(true);
+    }
+
+    const handleCancelUpdateModal = () => {
+        setUpdateModal(false);
+    }
+
     useEffect(() => {
         loadCateogry();
     }, [])
@@ -61,16 +86,16 @@ const Category = (props) => {
                             <h2 className="text-xl font-bold">Categories Lists</h2>
                         </div>
                         <div className="flex w-1/2 justify-end items-center">
-                            <Link to={`${match.path}/create`}>
-                                <Button type="primary" size="large">
-                                    <div className="flex items-center justify-center">
-                                        <Space>
-                                            <FiPlusCircle /> Create Category
-                                        </Space>
-                                    </div>
-                                </Button>
+                            {/* <Link to={`${match.path}/create`}> */}
+                            <Button type="primary" size="large" onClick={onClickShowModal}>
+                                <div className="flex items-center justify-center">
+                                    <Space>
+                                        <FiPlusCircle /> Create Category
+                                    </Space>
+                                </div>
+                            </Button>
 
-                            </Link>
+                            {/* </Link> */}
                         </div>
                     </div>
 
@@ -109,14 +134,14 @@ const Category = (props) => {
                                 <>
                                     <Space>
                                         <div className="inline-flex items-center rounded-md">
-                                            <Link to={`${match.path}/${record.id}/edit`}>
-                                                <button className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
+                                            {/* <Link to={`${match.path}/${record.id}/edit`}> */}
+                                                <button onClick={updateModalCategory} className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                                     <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                                     </svg>
                                                     </span>
                                                 </button>
-                                            </Link>
+                                            {/* </Link> */}
 
                                             <button className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border-y border-slate-200 font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                                 <span>
@@ -144,6 +169,188 @@ const Category = (props) => {
 
                 </div>
             </Fragment>
+
+            {/* Add Modal Category */}
+            <Modal
+                title="Add Category"
+                open={openModalCategory}
+                // onOk={handleOkModalCateogry}
+                onCancel={handleCancelModalCategory}
+                width={'50%'}
+                footer={[
+                    <Button key="back" onClick={handleCancelModalCategory}>
+                        Cancel
+                    </Button>,
+                    <Button type="primary" htmlType="submit">
+                        <div className="flex">
+                            <Space>
+                                <FiSave /> Save & Continue
+                            </Space>
+                        </div>
+                    </Button>
+                ]}
+            >
+                <div>
+                    <Form
+                        name="Category"
+                        labelCol={{
+                            span: 4,
+                        }}
+                        // wrapperCol={{
+                        //     span: 16,
+                        // }}
+                        initialValues={{
+                            remember: true,
+                        }}
+                        autoComplete="off"
+                    >
+                        {/* <h1 className="text-xl font-semibold mb-4">Category Info</h1> */}
+                        <div>
+                            <Form.Item
+                                label="Category"
+                                name="category"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your category!',
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </div>
+                        <div>
+                            <Form.Item
+                                label="Sub-category"
+                                name="sub-category"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your sub-category!',
+                                    },
+                                ]}
+                            >
+                                <Select
+                                    size={'large'}
+                                    defaultValue="Music"
+                                    // onChange={handleChange}
+                                    options={options}
+                                />
+                            </Form.Item>
+                        </div>
+                        <div>
+                            <Form.Item
+                                label="Slug"
+                                name="slug"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your slug!',
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </div>
+                        {/* <div className="mt-3 mb-1 flex justify-end items-center">
+                            <Button type="primary" htmlType="submit">
+                                <div className="flex">
+                                    <Space>
+                                        <FiSave /> Save & Continue
+                                    </Space>
+                                </div>
+                            </Button>
+
+                        </div> */}
+                    </Form>
+                </div>
+            </Modal>
+
+            {/* Update Modal Category  */}
+            <Modal
+                title="Update Category"
+                open={openModalUpdate}
+                // onOk={handleOkModalCateogry}
+                onCancel={handleCancelUpdateModal}
+                width={'50%'}
+                footer={[
+                    <Button key="back" onClick={handleCancelUpdateModal}>
+                        Cancel
+                    </Button>,
+                    <Button type="primary" htmlType="submit">
+                        <div className="flex">
+                            <Space>
+                                <FiSave /> Update & Continue
+                            </Space>
+                        </div>
+                    </Button>
+                ]}
+            >
+                <div>
+                    <Form
+                        name="Category"
+                        labelCol={{
+                            span: 4,
+                        }}
+                        // wrapperCol={{
+                        //     span: 16,
+                        // }}
+                        initialValues={{
+                            remember: true,
+                        }}
+                        autoComplete="off"
+                    >
+                        {/* <h1 className="text-xl font-semibold mb-4">Category Info</h1> */}
+                        <div>
+                            <Form.Item
+                                label="Category"
+                                name="category"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your category!',
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </div>
+                        <div>
+                            <Form.Item
+                                label="Sub-category"
+                                name="sub-category"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your sub-category!',
+                                    },
+                                ]}
+                            >
+                                <Select
+                                    size={'large'}
+                                    defaultValue="Music"
+                                    // onChange={handleChange}
+                                    options={options}
+                                />
+                            </Form.Item>
+                        </div>
+                        <div>
+                            <Form.Item
+                                label="Slug"
+                                name="slug"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your slug!',
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </div>
+                    </Form>
+                </div>
+            </Modal>
         </>
     )
 }

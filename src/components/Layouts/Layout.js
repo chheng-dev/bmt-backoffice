@@ -105,10 +105,11 @@ class LayoutContent extends React.Component {
                                     <Input
                                         className='w-2/3 p-2'
                                         placeholder="Search"
-                                        prefix={<FiSearch className="site-form-item-icon" />}
+                                        prefix={<FiSearch className="site-form-item-icon text-xl text-gray-400" />}
                                         suffix={
                                             <Tooltip title="Extra information">
                                                 <FiInfo
+                                                    className='text-xl text-gray-400'
                                                     style={{
                                                         color: 'rgba(0,0,0,.45)',
                                                     }}
@@ -120,10 +121,10 @@ class LayoutContent extends React.Component {
                                 <div className='flex w-1/2 justify-end items-center cursor-pointer'>
                                     <Space size={'middle'}>
                                         <Link>
-                                            <FiBell />
+                                            <FiBell className='text-xl'/>
                                         </Link>
                                         <Link>
-                                            <FiGrid />
+                                            <FiGrid className='text-xl'/>
                                         </Link>
                                         {/* <Link> */}
                                             {/* <button onClick={this.handleSwitchTheme}>
@@ -133,8 +134,8 @@ class LayoutContent extends React.Component {
                                         <Link>
                                             <Popover placement="bottomRight" content={menuContent} trigger="click">
                                                 <Space>
-                                                    <h3 className='text-gray-700 text-xs'>Chheng Chung</h3>
-                                                    <img className='rounded-full w-8 h-8' src='https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80' />
+                                                    <h3 className='text-gray-400 text-xs font-normal'>Chheng Chung</h3>
+                                                    <img className='rounded-full w-10 h-10' src='https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80' />
                                                 </Space>
                                             </Popover>
                                         </Link>

@@ -25,6 +25,57 @@ export const ViewEvent = () => {
         }
     }
 
+    const data = [
+        {
+            key: '1',
+            orderId: "#0012451",
+            eventName: 'The Story Of Danaou Taba (Musical Drama)',
+            customerName:"Bella Simatupang",
+            qty: 32,
+            location:"London, US	",
+            soldTicket:"1 pcs",
+            date:"04/08/2020 12:34 AM",
+            refund:"Yes"
+    
+        },
+        {
+            key: '2',
+            orderId: "#0012452",
+            eventName: 'The Story Of Danaou Taba (Musical Drama)',
+            customerName:"Bella Simatupang",
+            qty: 42,
+            location:"London, US",
+            soldTicket:"1 pcs",
+            refund:"Yes",
+            date:"04/08/2020 12:34 AM"
+    
+        },
+        {
+            key: '3',
+            orderId: '#0012451',
+            eventName: 'The Story Of Danaou Taba (Musical Drama)',
+            qty: 32,
+            customerName:"Bella Simatupang",
+            eventType: 'Football',
+            location:"Jakarta, Indonesia	",
+            soldTicket:"1 pcs",
+            refund:"Yes",
+            date:"04/08/2020 12:34 AM"
+        },
+        {
+            key: '4',
+            orderId:"#0012451",
+            eventName: 'The Story Of Danaou Taba (Musical Drama)',
+            qty: 32,
+            customerName:"Bella Simatupang",
+            location:"Medan, Indonesia",
+            soldTicket:"1 pcs",
+            refund:"Yes",
+            date:"04/08/2020 12:34 AM"
+    
+        },
+    ];
+
     useEffect(()=>{
         getEvents();
     },{});
@@ -32,6 +83,7 @@ export const ViewEvent = () => {
     if(loading){
         return <Loading/>
     }
+    
 
     return (
         <div className="w-full  pb-12">
@@ -133,7 +185,7 @@ export const ViewEvent = () => {
                                                         <span className="block text-gray-400 ">
                                                             Ticket Price
                                                         </span>
-                                                        <span className="block font-nromal py-1">
+                                                        <span className="block font-nromal py-0.5 text-sm">
                                                             ${event.price}
                                                         </span>
                                                     </div>
@@ -146,7 +198,7 @@ export const ViewEvent = () => {
                                                         <span className="block text-gray-400 ">
                                                             Date
                                                         </span>
-                                                        <span className="block font-nromal py-1">
+                                                        <span className="block font-nromal py-0.5 text-sm">
                                                             Sunday,12 june 2020
                                                         </span>
                                                     </div>
@@ -159,7 +211,7 @@ export const ViewEvent = () => {
                                                         <span className="block text-gray-400 ">
                                                             Location
                                                         </span>
-                                                        <span className="block font-nromal py-1">
+                                                        <span className="block font-nromal py-0.5 text-sm">
                                                             Blue Corner St.123566 Franklin Avenue,London
                                                         </span>
                                                     </div>
@@ -173,56 +225,54 @@ export const ViewEvent = () => {
                         </div>
                         <div className="w-full my-6 bg-white px-6 py-3">
                             <h1 className="text-xl font-semibold py-3">Recent Sales</h1>
-                            <Table bordered size={"small"} dataSource={""}>
+                            <Table bordered size={"small"} dataSource={data}>
                                 <Column
                                     title="Order ID"
                                     key="idx"
-                                    dataIndex={'idx'}
-                                    align="center"
+                                    dataIndex={'orderId'}
+                                    // align="center"
                                     width={80}
                                 />
                                 <Column
                                     title="Date"
-                                    key="event"
-                                    dataIndex={'name'}
+                                    key="date"
+                                    dataIndex={'date'}
                                 />
                                 <Column
                                     title="Customer Name"
                                     key="status"
                                     width={250}
-                                    align="center"
+                                    // align="center"
                                     dataIndex={'qty'}
                                 />
                                 <Column
                                     title="Location"
-                                    key="price"
-                                    width={120}
-                                    align="center"
-                                    render={(_, record) => (
-                                        <span className="font-bold text-red-700">
-                                            $10.00
-                                        </span>
-                                    )}
+                                    key="location"
+                                    width={200}
+                                    // align="center"
+                                   dataIndex={'location'}
                                 />
                                 <Column
                                     title="Sold Ticket	"
-                                    key="price"
+                                    key="soldTicket"
                                     width={120}
-                                    align="center"
-                                    render={(_, record) => (
-                                        <span className="font-bold text-red-700">
-                                            $10.00
-                                        </span>
-                                    )}
+                                    dataIndex={'soldTicket'}
+                                    // align="center"
+                                    // render={(_, record) => (
+                                    //     <span className="font-bold text-red-700">
+                                    //         $10.00
+                                    //     </span>
+                                    // )}
                                 />
                                 <Column
                                     title="Refund"
-                                    key="price"
+                                    key="refund"
                                     width={120}
-                                    align="center"
+                                    // align="center"
+                                    dataIndex='refund'
                                     render={(_, record) => (
-                                        <span className="font-bold text-red-700">
-                                            $10.00
+                                        <span className="font-bold">
+                                            No
                                         </span>
                                     )}
                                 />

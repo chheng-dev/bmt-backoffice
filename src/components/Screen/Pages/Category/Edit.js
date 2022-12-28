@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Input from "antd/es/input/Input";
-import { Button, Form } from "antd";
+import { Button, Form,Select,Space } from "antd";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading";
+import { FiSave } from "react-icons/fi";
 import axios from "axios";
 
 
@@ -41,6 +42,14 @@ const EditCategory = () => {
         }
     }
 
+    const options = [];
+    for (let i = 10; i < 36; i++) {
+        options.push({
+            value: i.toString(36) + i,
+            label: i.toString(36) + i,
+        });
+    }
+
     useEffect(() => {
         getCategoryById();
     }, [])
@@ -60,13 +69,13 @@ const EditCategory = () => {
 
                     <div className="max-w-4xl mx-auto">
                         <Form
-                            name="Update Category"
+                            name="Category"
                             labelCol={{
-                                span: 8,
+                                span: 4,
                             }}
-                            wrapperCol={{
-                                span: 16,
-                            }}
+                            // wrapperCol={{
+                            //     span: 16,
+                            // }}
                             initialValues={{
                                 remember: true,
                             }}
@@ -84,7 +93,26 @@ const EditCategory = () => {
                                         },
                                     ]}
                                 >
-                                    <Input value={category.name} onChange={(e) => setCategory(e.target.value)} />
+                                    <Input  />
+                                </Form.Item>
+                            </div>
+                            <div>
+                                <Form.Item
+                                    label="Sub-category"
+                                    name="sub-category"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your sub-category!',
+                                        },
+                                    ]}
+                                >
+                                    <Select
+                                        size={'large'}
+                                        defaultValue="Music"
+                                        // onChange={handleChange}
+                                        options={options}
+                                    />
                                 </Form.Item>
                             </div>
                             <div>
@@ -98,11 +126,18 @@ const EditCategory = () => {
                                         },
                                     ]}
                                 >
-                                    <Input value={category.name} onChange={(e) => setSlugName(e.target.value)} />
+                                    <Input onChange={(e) => setSlugName(e.target.value)} />
                                 </Form.Item>
                             </div>
                             <div className="mt-3 mb-1 flex justify-end items-center">
-                                <Button type="primary" htmlType="submit">Update & Continue</Button>
+                                <Button type="primary" htmlType="submit">
+                                    <div className="flex">
+                                        <Space>
+                                            <FiSave /> Save & Continue
+                                        </Space>
+                                    </div>
+                                </Button>
+
                             </div>
                         </Form>
                     </div>

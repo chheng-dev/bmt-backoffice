@@ -18,6 +18,8 @@ const data = [
         location:"London, US	",
         soldTicket:"1 pcs",
         date:"04/08/2020 12:34 AM",
+        avalible:"100k left",
+        total:'$123,55',
         refund:"Yes"
 
     },
@@ -27,9 +29,11 @@ const data = [
         eventName: 'The Story Of Danaou Taba (Musical Drama)',
         customerName:"Bella Simatupang",
         qty: 42,
-        location:"London, US	",
+        location:"London, US",
         soldTicket:"1 pcs",
         refund:"Yes",
+        avalible:"100k left",
+        total:'$123,55',
         date:"04/08/2020 12:34 AM"
 
     },
@@ -43,6 +47,8 @@ const data = [
         location:"Jakarta, Indonesia	",
         soldTicket:"1 pcs",
         refund:"Yes",
+        avalible:"100k left",
+        total:'$123,55',
         date:"04/08/2020 12:34 AM"
     },
     {
@@ -54,6 +60,8 @@ const data = [
         location:"Medan, Indonesia",
         soldTicket:"1 pcs",
         refund:"Yes",
+        avalible:"100k left",
+        total:'$123,55',
         date:"04/08/2020 12:34 AM"
 
     },
@@ -277,6 +285,18 @@ const Order = (props) => {
                         // )}
                     />
                     <Column
+                        title="Avalable"
+                        key="soldTicket"
+                        dataIndex={"avalible"}
+                        width={60}
+                        // align="center"
+                        // render={(_, record) => (
+                        //     <span className="font-bold text-red-700">
+                        //         $10.00
+                        //     </span>
+                        // )}
+                    />
+                    <Column
                         title="Refund"
                         key="refund"
                         dataIndex={"refund"}
@@ -287,6 +307,20 @@ const Order = (props) => {
                         //         Yes
                         //     </span>
                         // )}
+                    />
+                    <Column
+                        title="Total Revenue"
+                        key="total"
+                        // dataIndex={"total"}
+                        width={10}
+                        align="center"
+                        render={(_, record) => (
+                            <div className="">
+                                <span className="font-bold  text-primary rounded-2xl">
+                                $10.00
+                            </span>
+                            </div>
+                        )}
                     />
 
                 </Table>
